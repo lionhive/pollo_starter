@@ -1,4 +1,3 @@
-/*
 // Defines MongoDB models.
 const Mongoose = require('mongoose');
 
@@ -41,15 +40,3 @@ const ReviewSchema = Mongoose.Schema({
 const Review = Mongoose.model('Review', ReviewSchema);
 
 module.exports = {President, User, Service, Review};
-*/
-const Mongoose = require('mongoose');
-
-const PresidentSchema = Mongoose.Schema({
-  name: String,
-  party: String,
-  term: String,
-});
-
-const President = Mongoose.model('President', PresidentSchema);
-
-module.exports = President;

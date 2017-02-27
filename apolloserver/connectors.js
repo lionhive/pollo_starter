@@ -1,9 +1,9 @@
-const PresidentModel = require('./model');
+const Models = require('./model');
 
 class President {
   constructor() {
     this.findPresident = (name) => {
-      const person = PresidentModel.findOne({ name }, (error, data) => {
+      const person = Models.President.findOne({ name }, (error, data) => {
         return data;
       });
       return person;

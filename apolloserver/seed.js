@@ -1,5 +1,5 @@
 const request = require('request-promise');
-const President = require('./model');
+const Models = require('./model');
 
 const seed = () => {
   request('https://mysafeinfo.com/api/data?list=presidents&format=json')
@@ -13,7 +13,7 @@ const seed = () => {
         return obj;
       });
       data.forEach((d) => {
-        const president = new President(d);
+        const president = new Models.President(d);
         president.save((err, item) => {
           console.log('saved:', item);
         });

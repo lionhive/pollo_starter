@@ -1,4 +1,3 @@
-// Defines GraphQL definitions.
 const typeDefinitions = `
 type President {
   name: String
