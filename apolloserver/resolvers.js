@@ -5,6 +5,16 @@ const resolveFunctions = {
       const president = new ctx.constructor.President();
       return president.findPresident(name);
     },
+    presidents(_, {}, ctx) {
+      const presidents = new ctx.constructor.President();
+      return presidents.allPresidents();
+    }
+  },
+  Mutation: {
+    add_president(_, { name }, ctx) {
+      const president = new ctx.constructor.President();
+      return president.addPresident(name);
+    }
   },
 };
 
