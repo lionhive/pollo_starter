@@ -8,6 +8,13 @@ const PresidentSchema = Mongoose.Schema({
 });
 const President = Mongoose.model('President', PresidentSchema);
 
+var Extension = Mongoose.Schema({
+  key: String,
+  val_int: Number,
+  val_string: String,
+  val_list: [this],
+});
+
 const UserSchema = Mongoose.Schema({
   name: String,
   username: { type: String, required: true, unique: true },
@@ -19,7 +26,8 @@ const UserSchema = Mongoose.Schema({
     website: String
   },
   created_at: Date,
-  updated_at: Date
+  updated_at: Date,
+  extension: [Extension],
 });
 const User = Mongoose.model('User', UserSchema);
 

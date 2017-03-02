@@ -17,15 +17,17 @@ Mongoose.connect('mongodb://localhost/apollo', (err) => {
 
 const seed = require('./seed');
 
-seed();
-
-const Schema = require('./schema');
-const Resolvers = require('./resolvers');
+//seed();
+// see https://github.com/tadejstanic/graphql-api-example
+const Schema = require('./data/schema');
+const Resolvers = require('./data/resolvers/user.js');
 const Connectors = require('./connectors');
 
+const logger = { log: (e) => console.log(e) }
 const executableSchema = makeExecutableSchema({
   typeDefs: Schema,
   resolvers: Resolvers,
+  logger,
 });
 
 app.use('/graphql', bodyParser.json(), apolloExpress({
