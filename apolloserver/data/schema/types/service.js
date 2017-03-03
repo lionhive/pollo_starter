@@ -3,7 +3,8 @@ const Service = `
 # A service provider.
 type Service {
   name: String
-  provider: Int
+  category: String
+  provider: Service
   cost: Int
 }
 `;

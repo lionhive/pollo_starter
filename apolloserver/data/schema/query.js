@@ -8,6 +8,7 @@ type RootQuery {
   users: [User]
   
   service(name: String, provider: String): Service
+  services: Service
 }`;
 
 
