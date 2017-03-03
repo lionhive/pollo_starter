@@ -1,14 +1,6 @@
 // Defines access functions for GraphQL schemas.
 const resolveFunctions = {
   RootQuery: {
-    president(_, { name }, ctx) {
-      const president = new ctx.constructor.President();
-      return president.findPresident(name);
-    },
-    presidents(_, {}, ctx) {
-      const presidents = new ctx.constructor.President();
-      return presidents.allPresidents();
-    },
     // Users
     user(_, { name }, ctx) {
       const user = new ctx.constructor.User();
@@ -20,10 +12,6 @@ const resolveFunctions = {
     },
   },
   Mutation: {
-    add_president(_, { name }, ctx) {
-      const president = new ctx.constructor.President();
-      return president.addPresident(name);
-    },
     add_user(_, { username, name, password, extension }, ctx) {
       const user = new ctx.constructor.User();
       return user.addUser(username, name, password, extension);

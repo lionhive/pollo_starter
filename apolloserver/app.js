@@ -20,7 +20,7 @@ Mongoose.connect('mongodb://localhost/apollo', (err) => {
 // see https://github.com/tadejstanic/graphql-api-example
 
 const Schema = require('./data/schema');
-const Resolvers = require('./data/resolvers/user.js');
+const Resolvers = require('./data/resolvers');
 const Connectors = require('./data/connectors');
 
 const logger = { log: (e) => console.log(e) }

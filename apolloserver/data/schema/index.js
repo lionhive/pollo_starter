@@ -6,8 +6,8 @@ const Query = require('./query.js');
 const Mutation = require('./mutation.js');
  
 // Import types
-const User = require('./user.js');
-const President = require('./president.js');
-const Service = require('./service.js');
+const User = require('./types/user.js');
+const President = require('./types/president.js');
+const Service = require('./types/service.js');
  
 module.exports = [Schema, Query, Mutation, User, President, Service];
