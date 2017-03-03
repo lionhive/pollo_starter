@@ -15,13 +15,13 @@ Mongoose.connect('mongodb://localhost/apollo', (err) => {
   return true;
 });
 
-const seed = require('./seed');
-
+//const seed = require('./seed');
 //seed();
 // see https://github.com/tadejstanic/graphql-api-example
+
 const Schema = require('./data/schema');
 const Resolvers = require('./data/resolvers/user.js');
-const Connectors = require('./connectors');
+const Connectors = require('./data/connectors');
 
 const logger = { log: (e) => console.log(e) }
 const executableSchema = makeExecutableSchema({

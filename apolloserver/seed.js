@@ -1,5 +1,5 @@
 const request = require('request-promise');
-const Models = require('./model');
+const Models = require('./data/models/model');
 
 const seed = () => {
   request('https://mysafeinfo.com/api/data?list=presidents&format=json')
