@@ -4,11 +4,12 @@ type RootQuery {
   president(name: String, party: String, term: String): President
   presidents: [President]
   
-  user(username: String): User
+  user(username: String, name: String): User
   users: [User]
-  
-  service(name: String, provider: String): Service
-  services: Service
+  user_extension(username: String, key: String): Extension
+
+  service(name: String): Service
+  services: [Service]
 }`;
 
 

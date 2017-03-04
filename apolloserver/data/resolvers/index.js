@@ -1,6 +1,7 @@
 const { merge } = require('lodash');
 
-const User = require('./user.js');
 const President = require('./president.js');
+const Service = require('./service.js');
+const User = require('./user.js');
  
-module.exports = merge(User, President);
+module.exports = merge(President, Service, User);

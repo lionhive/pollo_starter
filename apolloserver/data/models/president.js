@@ -8,4 +8,4 @@ const PresidentSchema = Mongoose.Schema({
 });
 const President = Mongoose.model('President', PresidentSchema);
 
-module.exports = {President};
+module.exports = President;

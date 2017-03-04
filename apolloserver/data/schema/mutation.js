@@ -6,7 +6,7 @@ type Mutation {
   add_user(username: String, name: String, password: String): User
   add_user_extension(username: String, key: String, val_int: Int, val_string: String): User
   
-  add_service(name: String, password: String): Service
+  add_service(name: String, provider: Int, category: String, cost: Int): Service
 }`;
 
 module.exports = () => [mutationDefinitions];

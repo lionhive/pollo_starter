@@ -1,25 +1,23 @@
-const Models = require('../models/president');
+const db = require('../models/president');
 
 class President {
   constructor() {
-    this.findPresident = (name) => {
-      const person = Models.President.findOne({ name }, (error, data) => {
+    this.find = (name) => {
+      const person = db.findOne({ name }, (error, data) => {
         return data;
       });
       return person;
     };
     
-    this.allPresidents = () => {
-      const all = Models.President.find({}, (error, data) => {
+    this.all = () => {
+      const all = db.find({}, (error, data) => {
         return data;
       });
       return all;
     };
     
-    this.addPresident = (president_name) => {
-      const president = new Models.President({name: president_name,
-      party: "Yes",
-      term: "2017"});
+    this.add = (name, party, term) => {
+      const president = new db({name, party, term});
       return president.save((err, item) => {
           console.log('added president:', item);
         });

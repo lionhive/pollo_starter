@@ -2,19 +2,23 @@
 const resolveFunctions = {
   RootQuery: {
     // Users
-    user(_, { name }, ctx) {
+    user(_, { username, name }, ctx) {
       const user = new ctx.constructor.User();
-      return user.findUser(name);
+      return user.find(username, name);
     },
     users(_, {}, ctx) {
       const users = new ctx.constructor.User();
-      return users.allUsers();
+      return users.all();
+    },
+    user_extension(_, { username, key }, ctx) {
+      const user = new ctx.constructor.User();
+      return user.extension(username, key);
     },
   },
   Mutation: {
     add_user(_, { username, name, password, extension }, ctx) {
       const user = new ctx.constructor.User();
-      return user.addUser(username, name, password, extension);
+      return user.add(username, name, password, extension);
     },
     add_user_extension(_, {username, key, val_int, val_string }, ctx) {
       const user = new ctx.constructor.User();

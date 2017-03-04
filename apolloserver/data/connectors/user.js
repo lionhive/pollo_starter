@@ -1,17 +1,32 @@
-const Models = require('../models/user');
+const db = require('../models/user');
 
 class User {
   constructor() {
     // Queries
-    this.allUsers = () => {
-      const all = Models.User.find({}, (error, data) => {
+    this.all = () => {
+      const result = db.find({}, (error, data) => {
         return data;
       });
-      return all;
+      return result;
     };
+    this.find = (username, name) => {
+      const result = db.findOne({ username }, (error, data) => {
+        return data;
+      });
+      return result;
+    };
+    this.extension = (username, key) => {
+      const user = db.find({username}, (error, data) => {
+        return data;
+      });
+      extension = user.find({ extension: { key }}, (error, data) => {
+        return data;
+      });
+      return extension;
+    };    
     // Mutators
-    this.addUser = (username, name, password) => {
-      const user = new Models.User({username: username,
+    this.add = (username, name, password) => {
+      const user = new db({username: username,
         name: name,
         password: password});
       return user.save((err, item) => {
@@ -19,7 +34,7 @@ class User {
         });
     };
     this.addExtension = (username, extension) => {
-      const user = Models.User.update({ username }, { $push:
+      const user = db.update({ username }, { $push:
           { extension: 
             { key: extension.key,
               val_int: extension.val_int,

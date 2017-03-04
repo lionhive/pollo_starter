@@ -6,26 +6,40 @@ type Extension {
   val_string: String
   val_list: [Extension]
 }
-type Meta {
-    age: Int
-    website: String
+
+type Admin {
+  is_admin: Boolean
 }
+type Logging {
+  created_at: Int
+  updated_at: Int
+}
+type Meta {
+  age: Int
+  website: String
+}
+type Calendar {
+  calendar: String
+}
+type Location {
+  location: String
+  last_seen: Int
+}
+
 type User {
   _id: String
   name: String
   username: String!
   password: String!
-  admin: Boolean
-  location: String
+  # Extra Data
+  admin: Admin
+  logging: Logging
   meta: Meta
-  created_at: Int
-  updated_at: Int
+  calendar: Calendar
+  location: Location
+
   extension: [Extension]
 }
-type Provider {
-  name: String
-  provider: Int
-  cost: Int
-}`;
+`;
 
 module.exports = () => [userDefinitions]
