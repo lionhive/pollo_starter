@@ -10,8 +10,10 @@
     "apollo-client": "^0.8.7",
     "graphql-tag": "^1.2.4",
     "react": "15.4.2",
-    "react-apollo": "^0.11.1",
-    "react-native": "0.41.2"
+    "react-apollo": "^0.11.2",
+    "react-native": "0.41.2",
+    "react-native-router-flux": "^3.38.0",
+    "react-redux": "^5.0.3"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",

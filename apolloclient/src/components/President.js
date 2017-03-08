@@ -4,7 +4,7 @@ import { View, Text, TextInput, StyleSheet } from 'react-native'
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag'
 
-class App extends Component {
+class President extends Component {
   constructor() {
     super()
     this.state = {
@@ -26,7 +26,7 @@ class App extends Component {
       }
     }`
 
-    const President = ({ data }) => (
+    const PresidentElem = ({ data }) => (
       <View style={{paddingLeft: 20, paddingTop: 20}}>
         <Text>Name: {data.president && data.president.name}</Text>
         <Text>Party: {data.president && data.president.party}</Text>
@@ -36,7 +36,7 @@ class App extends Component {
     
     const ViewWithData = graphql(query, {
       options: { variables: { name: this.state.name } }
-    })(President)
+    })(PresidentElem)
 
     return (
       <View style={styles.container}>
@@ -64,4 +64,4 @@ styles = StyleSheet.create({
   }
 })
 
-export default App
+export default President;
