@@ -2,6 +2,7 @@
 const Service = `
 # A service provider.
 type Service {
+  _id: String
   name: String
   category: String
   provider: Service

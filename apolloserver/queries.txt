@@ -1,0 +1,77 @@
+mutation {
+  add_service(name: "Buzzcut 2", provider: 3, category: "Hair", cost: 10) {
+    name
+    category
+    cost
+  }
+}
+
+
+{
+  services {
+    _id
+    name
+    category
+    provider {
+      name
+      category
+      cost
+    }
+    cost
+  }
+}
+
+
+
+
+{
+  users {
+    username
+    name
+    extension {
+      key
+      val_int
+      val_string
+    }
+  }
+}
+
+
+
+
+query {
+  user(username:"obama", name:"tvykruaata") {
+    _id
+    name
+    username
+    password
+    extension {
+      key
+      val_string
+    }
+  }
+}
+
+
+query {
+  user_extension(username:"tom",key:"phrase"){
+    key
+    val_int
+    val_string
+  }
+}
+
+mutation {
+  add_user_extension(username:"tom",key:"car",val_string:"landcruiser") {
+    _id
+    name
+    username
+    password
+  }
+}
+
+{
+  presidents {
+    name
+  }
+}

@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
-import { View, Text, TextInput, StyleSheet } from 'react-native'
+"use strict";
+
+import React, { Component } from 'react';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag'
+import gql from 'graphql-tag';
 
 class President extends Component {
   constructor() {
@@ -50,7 +52,7 @@ class President extends Component {
   }
 }
 
-styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',

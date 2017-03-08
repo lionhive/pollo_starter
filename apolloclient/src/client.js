@@ -1,3 +1,5 @@
+"use strict";
+
 import React from 'react'
 import { Actions, Scene, Router } from 'react-native-router-flux'
 import { ApolloProvider } from 'react-apollo'
