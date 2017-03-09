@@ -20,7 +20,8 @@ class User extends Component {
   };
 
   onUsernameChanged(username) {
-      this.props.actionUsernameChanged(username);
+      this.props.actions.actionUsernameChanged(username);
+      console.log(this.props);
   }
 
   recipes() {
@@ -49,6 +50,7 @@ class User extends Component {
           onChangeText={this.onUsernameChanged}
           style={styles.input} />
         <TextInput />
+        <Text>Redux username_input is {this.props.users.username_input}</Text>
         <Text>Name: {this.props.data.user.name}</Text>
         <Text>Username: {this.props.data.user.username}</Text>
       </View>
@@ -68,19 +70,25 @@ const UserWithData = graphql(userQuery, userQueryOptions)(User);
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 
-// Map reducers.
+// Note: Coupling the Component's map function directly to the Redux state is bad, solution:
+// https://goshakkk.name/redux-antipattern-mapstatetoprops/
+
+// Map redux store state to properties.
+// state.<reducername> is the reducers/<file.js> name.
 function mapStateToProps(state) {
   return { 
-    reducerUsernameChanged: state.reducerUsernameChanged,
+    users: state.users,
    };
 }
 
 // Map action functions.
-//import * as ActionCreators from '../actions';
 import { ActionCreators } from '../actions';
 
+// Note: It is possible to bind ActionCreators to other functions
+// besides Props. See http://stackoverflow.com/questions/34458261/how-to-get-simple-dispatch-from-this-props-using-connect-w-redux
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators(ActionCreators, dispatch);
+    // 'actions:' organizes callbacks into props.actions.<function_name>.
+    return {actions: bindActionCreators(ActionCreators, dispatch)};
 }
 
 const userExport = connect(mapStateToProps, mapDispatchToProps)(UserWithData);

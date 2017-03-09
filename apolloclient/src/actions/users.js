@@ -20,7 +20,6 @@ export function fetchRecipes(ingredients) {
 */
 
 export function actionUsernameChanged(username) {
-  //console.log("actionUsernameChanged ", username)
   return {
     type: types.USERNAME_CHANGED,
     username,
