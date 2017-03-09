@@ -1,11 +1,10 @@
 "use strict";
-
 import React, { Component } from 'react'
 import { View, Text, TextInput } from 'react-native'
-
 import { graphql } from 'react-apollo';
 import userQuery from '../queries/user.js';
 import styles from '../styles/user.js';
+
 
 class User extends Component {
   constructor() {
@@ -21,9 +20,7 @@ class User extends Component {
   };
 
   onUsernameChanged(username) {
-      console.log("onUsernameChanged");
       this.props.actionUsernameChanged(username);
-          console.log(this.props);
   }
 
   recipes() {
@@ -87,7 +84,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 const userExport = connect(mapStateToProps, mapDispatchToProps)(UserWithData);
-console.log(userExport)
 export default userExport;
 
 

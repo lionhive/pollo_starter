@@ -1,4 +1,6 @@
+"use strict";
 import gql from 'graphql-tag'
+
 
 const userQuery = gql`query UserQuery($name: String!){
   user(username:$name)

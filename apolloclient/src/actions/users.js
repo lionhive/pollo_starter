@@ -1,4 +1,6 @@
+"use strict";
 import * as types from './types';
+
 
 /*
 export function fetchRecipes(ingredients) {
@@ -18,7 +20,7 @@ export function fetchRecipes(ingredients) {
 */
 
 export function actionUsernameChanged(username) {
-  console.log("actionUsernameChanged ", username)
+  //console.log("actionUsernameChanged ", username)
   return {
     type: types.USERNAME_CHANGED,
     username,

@@ -1,10 +1,9 @@
 "use strict";
-
 import React, { Component } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
-
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+
 
 class President extends Component {
   constructor() {
