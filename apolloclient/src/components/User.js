@@ -1,7 +1,6 @@
 "use strict";
 import React, { Component } from 'react'
 import { View, Text, TextInput } from 'react-native'
-import { graphql } from 'react-apollo';
 import userQuery from '../queries/user.js';
 import styles from '../styles/user.js';
 
@@ -58,10 +57,6 @@ class User extends Component {
   }
 }
 
-const userQueryOptions = {
-      options: { variables: { name: "tom" } }};
-const UserWithData = graphql(userQuery, userQueryOptions)(User);
-//export default UserWithData
 //
 // Above, we've finished all apollo binding.
 // Redux binding starts here.
@@ -80,10 +75,8 @@ function mapStateToProps(state) {
     users: state.users,
    };
 }
-
 // Map action functions.
 import { ActionCreators } from '../actions';
-
 // Note: It is possible to bind ActionCreators to other functions
 // besides Props. See http://stackoverflow.com/questions/34458261/how-to-get-simple-dispatch-from-this-props-using-connect-w-redux
 function mapDispatchToProps(dispatch) {
@@ -91,15 +84,13 @@ function mapDispatchToProps(dispatch) {
     return {actions: bindActionCreators(ActionCreators, dispatch)};
 }
 
-const userExport = connect(mapStateToProps, mapDispatchToProps)(UserWithData);
-export default userExport;
+const userQueryOptions = {
+      options: { variables: { name: "tvykruta" } }};
 
-
-/* more elegant:
 import { graphql, compose } from 'react-apollo';
+
 export default compose(
-  graphql(query, queryOptions),
-  graphql(mutation, mutationOptions),
-  connect(mapStateToProps, mapDispatchToProps)
-)(Component);
-*/
+  graphql(userQuery, userQueryOptions),
+//  graphql(mutation, mutationOptions),
+  connect(mapStateToProps, mapDispatchToProps),
+)(User);

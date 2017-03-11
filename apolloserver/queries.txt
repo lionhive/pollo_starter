@@ -75,3 +75,9 @@ mutation {
     name
   }
 }
+
+mutation AddUser {
+  add_user(name:"tom", username:"tvykruta", password: "pw"){
+    name
+  }
+}
