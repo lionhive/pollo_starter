@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
 import styles from '../styles/blank.js';
-import UserListContainer from '../container/userList.js';
+import UserListContainer from '../components/userList/container.js';
 
 class Blank extends Component {
   constructor() {
