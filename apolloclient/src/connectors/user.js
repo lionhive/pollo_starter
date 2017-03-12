@@ -1,10 +1,11 @@
+"use strict";
 // Connects Redux actions and GraphQL queries/mutations to the User Component.
 // Exports a connector function, use by injecting: Exported(Component).
 //
 // Note: Coupling the Component's map function directly to the Redux state is bad, solution:
 // https://goshakkk.name/redux-antipattern-mapstatetoprops/
 //
-"use strict";
+
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
