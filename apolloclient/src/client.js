@@ -14,8 +14,8 @@ import User from './components/user/container.js'
 const scenes = Actions.create(
   <Scene key='root'>
     <Scene key='president' component={President} title='President' initial={true} type='replace' />
-    <Scene key='blank' component={Blank} title='Blank' initial={true} type='replace' />
     <Scene key='user' component={User} title='User' initial={true} type='replace' />
+    <Scene key='blank' component={Blank} title='Blank' initial={true} type='replace' />
   </Scene>
 )
 
