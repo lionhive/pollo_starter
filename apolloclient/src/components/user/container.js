@@ -2,7 +2,7 @@
 "use strict";
 import React, { Component } from 'react'
 import { View, Text, TextInput } from 'react-native'
-import styles from '../styles/user.js';
+import styles from './styles.js';
 
 class User extends Component {
   constructor() {
@@ -71,5 +71,5 @@ class User extends Component {
 }
 
 // Inject redux actions and gql queries.
-import UserConnector from '../connectors/user.js';
-export default UserConnector(User);
+import Connector from './connector.js';
+export default Connector(User);
