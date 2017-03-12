@@ -21,7 +21,7 @@ function mapStateToProps(state) {
     users: state.users,
    };
 }
-import { ActionCreators } from '../..//actions';
+import * as ActionCreators from './actions';
 // Note: It is possible to bind ActionCreators to other functions
 // besides Props. See http://stackoverflow.com/questions/34458261/how-to-get-simple-dispatch-from-this-props-using-connect-w-redux
 function mapDispatchToProps(dispatch) {
