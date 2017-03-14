@@ -9,8 +9,7 @@ import {
   View,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux'
-
-var styles = require('./style');
+import styles from './styles';
 
 const background = require('./images/background_anim.gif');
 const lockIcon = require("./images/lock.png");
