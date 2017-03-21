@@ -11,10 +11,10 @@ import {
 import { Actions } from 'react-native-router-flux'
 import styles from './styles';
 
-const background = require('./images/background_anim.gif');
-const lockIcon = require("./images/lock.png");
-const personIcon = require("./images/person.png");
-const bear = require('./images/bear.png');
+const background = require('../../../resources/components/login/images/background_anim.gif');
+const lockIcon = require("../../../resources/components/login/images/lock.png");
+const personIcon = require("../../../resources/components/login/images/person.png");
+const bear = require('../../../resources/components/login/images/bear.png');
 
 
 class Login extends Component {
@@ -64,7 +64,7 @@ class Login extends Component {
               />
             </View>
             <TextInput
-              placeholder="Password"
+              placeholder="Password!!"
               secureTextEntry
               style={styles.input}
               underlineColorAndroid="transparent"

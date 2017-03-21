@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native'
-import { routes } from './src/client'
+import { routes } from './build/client'
 
 AppRegistry.registerComponent('apolloclient', () => () => routes)
