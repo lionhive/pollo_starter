@@ -6,7 +6,7 @@
 // https://goshakkk.name/redux-antipattern-mapstatetoprops/
 //
 
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, ActionCreatorsMapObject } from 'redux'
 import { connect } from 'react-redux';
 import { graphql, compose } from 'react-apollo';
 
@@ -16,17 +16,18 @@ import { graphql, compose } from 'react-apollo';
 
 // Map redux store state to properties.
 // state.<reducername> is the reducers/<file.js> name.
-function mapStateToProps(state) {
+function mapStateToProps(state: any) {
   return { 
     users: state.users,
    };
 }
-import * as ActionCreators from './actions';
+import * as actionCreators from './actions';
 // Note: It is possible to bind ActionCreators to other functions
 // besides Props. See http://stackoverflow.com/questions/34458261/how-to-get-simple-dispatch-from-this-props-using-connect-w-redux
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: any) {
+    let actionCreatorsMap = {...actionCreators} as ActionCreatorsMapObject;
     // 'actions:' organizes callbacks into props.actions.<function_name>.
-    return {actions: bindActionCreators(ActionCreators, dispatch)};
+    return {actions: bindActionCreators(actionCreatorsMap, dispatch)};
 }
 
 //

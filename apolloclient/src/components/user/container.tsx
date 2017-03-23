@@ -4,7 +4,16 @@ import React, { Component } from 'react'
 import { View, Text, TextInput } from 'react-native'
 import styles from './styles.js';
 
-class User extends Component {
+
+interface Props {
+  actions: any;
+  addUser: Function;
+  searchedRecipes: any;
+  data: any;
+  users: any;
+}  // empty.
+interface State {}  // empty.
+class User extends Component<Props, State> {
   constructor() {
     super();
     this.onUsernameChanged = this.onUsernameChanged.bind(this);
@@ -21,12 +30,12 @@ class User extends Component {
     addUser: React.PropTypes.func.isRequired,
   };
   // Calls user changed redux action.
-  onUsernameChanged(username) {
+  onUsernameChanged(username: String) {
     this.props.actions.actionUsernameChanged(username);
     console.log(this.props);
   }
   // Calls add user mutation.
-  onAddUser(event) {
+  onAddUser(event: any) {
     let username = event.nativeEvent.text;
     let vars = {username:username, name:username, password:"test"};
     this.props.addUser({variables: vars});
