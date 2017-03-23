@@ -1,11 +1,16 @@
 "use strict";
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, ViewStyle, Text, TextInput, StyleSheet } from 'react-native';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 
-class President extends Component {
+interface Props {}  // empty.
+interface State {
+  name: string;
+}  // empty.class 
+
+class President extends Component<Props, State> {
   constructor() {
     super()
     this.state = {
@@ -13,7 +18,7 @@ class President extends Component {
     }
     this.updateName = this.updateName.bind(this)
   }
-  updateName(name) {
+  updateName(name: string) {
     this.setState({
       name
     })
@@ -27,7 +32,7 @@ class President extends Component {
       }
     }`
 
-    const PresidentElem = ({ data }) => (
+    const PresidentElem = ({ data }: { data: any }) => (
       <View style={{paddingLeft: 20, paddingTop: 20}}>
         <Text>Name: {data.president && data.president.name}</Text>
         <Text>Party: {data.president && data.president.party}</Text>
@@ -35,7 +40,7 @@ class President extends Component {
       </View>
     )
     
-    const ViewWithData = graphql(query, {
+    const ViewWithData: any = graphql(query, {
       options: { variables: { name: this.state.name } }
     })(PresidentElem)
 
@@ -55,14 +60,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-  },
+  } as ViewStyle,
   input: {
     backgroundColor: '#dddddd',
     height: 50,
     margin: 20,
     marginBottom: 0,
     paddingLeft: 10
-  }
+  } as ViewStyle
 })
 
 export default President;

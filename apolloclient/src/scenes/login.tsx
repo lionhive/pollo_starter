@@ -7,7 +7,7 @@ import {
 import Login from '../components/login/container';
 
 
-class LoginScene extends Component {
+class LoginScene extends Component<void, void> {
   render() {
     return (<Login/>);
   };

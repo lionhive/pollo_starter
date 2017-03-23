@@ -5,10 +5,13 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 
-import styles from '../styles/blank.js';
+import styles from '../styles/blank';
 import UserListContainer from '../components/userList/container.js';
 
-class Blank extends Component {
+interface Props {}  // empty.
+interface State {}  // empty.
+
+class Blank extends Component<Props, State> {
   constructor() {
     super();
   }

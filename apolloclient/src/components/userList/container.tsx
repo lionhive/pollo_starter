@@ -2,11 +2,11 @@
 "use strict";
 import React, { Component } from 'react';
 import { Text } from 'react-native';
-import UserList from './component.js';
+import UserList from './component';
 
 
 interface Props {
-  data: any;
+  data?: any;
 }  // empty.
 interface State {}  // empty.
 class UserListContainer extends React.Component<Props, State> {
