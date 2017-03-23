@@ -3,7 +3,12 @@
 import React, { Component } from 'react';
 import Login from "./component";
 
-class LoginContainer extends Component {
+interface Props {  // empty.
+}
+interface State {  // empty.
+}
+
+class LoginContainer extends Component<Props, State> {
   render() {
     return (<Login/>);
   }

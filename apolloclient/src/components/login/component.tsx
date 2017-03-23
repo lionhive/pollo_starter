@@ -17,7 +17,12 @@ const personIcon = require("../../../resources/components/login/images/person.pn
 const bear = require('../../../resources/components/login/images/bear.png');
 
 
-class Login extends Component {
+interface Props {}  // empty.
+interface State {}  // empty.
+class Login extends Component<Props, State> {
+  constructor() {
+    super();
+  }
   _onPressSubmit() {
     Actions.user_scene();
   }
