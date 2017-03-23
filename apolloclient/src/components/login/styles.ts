@@ -1,79 +1,80 @@
-'use strict';
-import { StyleSheet, ViewStyle, TextStyle } from "react-native"
+"use strict";
 
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 
 export default StyleSheet.create({
-  container: {
-    flex: 2,
-  } as ViewStyle,
   background:  {
-      width: null,
       height: null,
+      width: null,
   },
-  wrapper: {
-    paddingHorizontal: 15,
-  } as ViewStyle,
-  inputWrap: {
-    flexDirection: "row",
-    marginVertical: 10,
-    height: 40,
-    backgroundColor: "transparent",
-  } as ViewStyle,
-  input: {
-    flex: 1,
-    paddingHorizontal: 10,
-    backgroundColor: "#FFF"
-  } as ViewStyle,
-  iconWrap: {
-    paddingHorizontal: 7,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#d73352",
-  } as ViewStyle,
-  icon: {
-    height: 20,
-    width: 20,
-    backgroundColor: "transparent",
-  } as ViewStyle,
   button: {
     alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 15,
-    marginVertical: 15,
     backgroundColor: "#d73352",
+    justifyContent: "center",
+    marginVertical: 15,
+    paddingVertical: 15,
   } as ViewStyle,
   buttonText: {
     color: "white",
     fontSize: 18,
   } as ViewStyle,
+  container: {
+    flex: 2,
+  } as ViewStyle,
   forgotPasswordText: {
-    color: "red",
     backgroundColor: "transparent",
+    color: "red",
     textAlign: "center",
   } as ViewStyle,
-  logoWrap: {
-    paddingVertical: 80,
-    flex: 3,
-    paddingHorizontal: 7,
-    alignItems: "center",
-    justifyContent: "center",
+  icon: {
     backgroundColor: "transparent",
+    height: 20,
+    width: 20,
   } as ViewStyle,
-  logoIconWrap: {
-    flexDirection: "row",
-    marginVertical: 10,
-    height: 40,
+  iconWrap: {
+    alignItems: "center",
+    backgroundColor: "#d73352",
+    justifyContent: "center",
+    paddingHorizontal: 7,
+  } as ViewStyle,
+  input: {
+    backgroundColor: "#FFF",
+    flex: 1,
+    paddingHorizontal: 10,
+  } as ViewStyle,
+  inputWrap: {
     backgroundColor: "transparent",
+    flexDirection: "row",
+    height: 40,
+    marginVertical: 10,
   } as ViewStyle,
   logoIcon: {
-    height: 50,
-    width: 50,
     backgroundColor: "transparent",
+    height: 50,
     tintColor: "white",
+    width: 50,
+  } as ViewStyle,
+  logoIconWrap: {
+    backgroundColor: "transparent",
+    flexDirection: "row",
+    height: 40,
+    marginVertical: 10,
   } as ViewStyle,
   logoText: {
-    marginLeft: 10,
     color: "white",
     fontSize: 40,
+    marginLeft: 10,
+  } as ViewStyle,
+  logoWrap: {
+    alignItems: "center",
+    backgroundColor: "transparent",
+    flex: 3,
+    justifyContent: "center",
+    paddingHorizontal: 7,
+    paddingVertical: 80,
+  } as ViewStyle,
+
+  wrapper: {
+    paddingHorizontal: 15,
   } as ViewStyle,
 });

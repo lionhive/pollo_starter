@@ -6,7 +6,7 @@ import Login from "./component";
 interface IProps {}  // empty.
 interface IState {}  // empty.
 class LoginContainer extends Component<IProps, IState> {
-  render() {
+  public render() {
     return (<Login/>);
   }
 }

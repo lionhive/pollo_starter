@@ -12,8 +12,8 @@ class UserListContainer extends React.Component<IProps, IState> {
   // TODO Injected propTypes should be defined in user.js.
   public static propTypes = {
     data: React.PropTypes.shape({
-      loading: React.PropTypes.bool,
       error: React.PropTypes.object,
+      loading: React.PropTypes.bool,
       users: React.PropTypes.array,
     }).isRequired,
   };

@@ -17,13 +17,14 @@ import { ActionCreatorsMapObject, bindActionCreators } from "redux";
 // Map redux store state to properties.
 // state.<reducername> is the reducers/<file.js> name.
 function mapStateToProps(state: any) {
-  return { 
+  return {
     users: state.users,
    };
 }
 import * as actionCreators from "./actions";
 // Note: It is possible to bind ActionCreators to other functions
-// besides Props. See http://stackoverflow.com/questions/34458261/how-to-get-simple-dispatch-from-this-props-using-connect-w-redux
+// besides Props. See http://stackoverflow.com/questions/34458261/
+// how-to-get-simple-dispatch-from-this-props-using-connect-w-redux
 function mapDispatchToProps(dispatch: any) {
     let actionCreatorsMap = {...actionCreators} as ActionCreatorsMapObject;
     // 'actions:' organizes callbacks into props.actions.<function_name>.
@@ -33,7 +34,7 @@ function mapDispatchToProps(dispatch: any) {
 //
 // Map Apollo GraphQL queries and mutations
 //
-import {userQuery, addUserMutation} from "./queries.js";
+import {addUserMutation, userQuery} from "./queries.js";
 const userQueryOptions = {
       options: { variables: { name: "tvykruta" } }};
 const addUserMutationOptions = { name: "addUser" };

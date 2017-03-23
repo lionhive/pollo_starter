@@ -1,1 +1,1 @@
-tslint 'src/**/*.ts{,x}''
+tslint 'src/**/*.ts{,x}'

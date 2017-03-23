@@ -12,13 +12,13 @@ class UserList extends React.Component<IProps, IState> {
   constructor(props: any) {
     super(props);
   }
-  render() {
+  public render() {
     return <View style={styles.scroll_view}>
             <ScrollView>
             {this.props.users.map(this.renderUser)}</ScrollView></View>;
   }
   // Render a single user row.
-  renderUser({name, username}: {name: string, username: string}) {
+  private renderUser({name, username}: {name: string, username: string}) {
     console.log(name, username);
     return <Text style={styles.row}>Username:{name} Name:{username}</Text>;
   }

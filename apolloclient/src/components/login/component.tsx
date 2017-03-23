@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { Actions } from "react-native-router-flux"
+import { Actions } from "react-native-router-flux";
 import styles from "./styles";
 
 const background = require("../../../resources/components/login/images/background_anim.gif");
@@ -16,17 +16,16 @@ const lockIcon = require("../../../resources/components/login/images/lock.png");
 const personIcon = require("../../../resources/components/login/images/person.png");
 const bear = require("../../../resources/components/login/images/bear.png");
 
-
 interface IProps { }  // empty.
 interface IState { }  // empty.
 class Login extends Component<IProps, IState> {
   constructor() {
     super();
   }
-  _onPressSubmit() {
+  private _onPressSubmit() {
     Actions.user_scene();
   }
-  render() {
+  public render() {
     return (
       <Image
         style={[styles.background, styles.container]}
@@ -87,7 +86,7 @@ class Login extends Component<IProps, IState> {
           </TouchableOpacity>
         </View>
         <View style={styles.container} />
-      </Image>)
+      </Image>);
   };
 };
 

@@ -6,10 +6,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   } as ViewStyle,
   row: {
-    flex: 1,
-    justifyContent: "center",
     color: "#0000ff",
+    flex: 1,
     fontSize: 20,
+    justifyContent: "center",
   } as ViewStyle,
   scroll_view: {},
 });

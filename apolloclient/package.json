@@ -31,6 +31,8 @@
     "babel-preset-react-native": "1.9.1",
     "jest": "18.1.0",
     "react-test-renderer": "15.4.2",
+    "tslint": "^4.5.1",
+    "tslint-react": "^2.5.0",
     "typescript": "^2.3.0-dev.20170321"
   },
   "jest": {

@@ -1,9 +1,8 @@
-// User Component declaration. 
+// User Component declaration.
 "use strict";
 import React, { Component } from "react";
 import { Text, TextInput, View } from "react-native";
 import styles from "./styles.js";
-
 
 interface IProps {
   actions: any;
@@ -11,41 +10,42 @@ interface IProps {
   searchedRecipes: any;
   data: any;
   users: any;
-} 
+}
 interface IState {}  // empty.
 class User extends Component<IProps, IState> {
+  // TODO Injected propTypes should be defined in user.js.
+  public static propTypes = {
+    // mutations
+    addUser: React.PropTypes.func.isRequired,
+    data: React.PropTypes.shape({
+      error: React.PropTypes.object,
+      loading: React.PropTypes.bool,
+      user: React.PropTypes.object,
+    }).isRequired,
+  };
   constructor() {
     super();
     this.onUsernameChanged = this.onUsernameChanged.bind(this);
     this.onAddUser = this.onAddUser.bind(this);
   }
-  // TODO Injected propTypes should be defined in user.js.
-  static propTypes = {
-    data: React.PropTypes.shape({
-      loading: React.PropTypes.bool,
-      error: React.PropTypes.object,
-      user: React.PropTypes.object,
-    }).isRequired,
-    // mutations
-    addUser: React.PropTypes.func.isRequired,
-  };
+
   // Calls user changed redux action.
-  onUsernameChanged(username: string) {
+  private onUsernameChanged(username: string) {
     this.props.actions.actionUsernameChanged(username);
     console.log(this.props);
   }
   // Calls add user mutation.
-  onAddUser(event: any) {
+  private onAddUser(event: any) {
     let username = event.nativeEvent.text;
-    let vars = {username:username, name:username, password:"test"};
+    let vars = {username, name: username, password: "test"};
     this.props.addUser({variables: vars});
   }
-  recipes() {
+  private recipes() {
       return Object.keys(this.props.searchedRecipes).map(
-          key => this.props.searchedRecipes[key]);
+          (key) => this.props.searchedRecipes[key]);
   }
 
-  render() {
+  public render() {
     if (this.props.data.loading) {
       return (<Text style={{marginTop: 64}}>Loading</Text>);
     }
@@ -71,7 +71,7 @@ class User extends Component<IProps, IState> {
           onEndEditing={this.onAddUser}
           style={styles.input} />
         <TextInput />
-        <Text>Redux username_input is {this.props.users.username_input}</Text>
+        <Text>Redux usernameInput is {this.props.users.usernameInput}</Text>
         <Text>Name: {this.props.data.user.name}</Text>
         <Text>Username: {this.props.data.user.username}</Text>
       </View>

@@ -1,6 +1,6 @@
 // Creates apollo client, redux, and shared store.
 "use strict";
-import ApolloClient, { createNetworkInterface } from "apollo-client"
+import ApolloClient, { createNetworkInterface } from "apollo-client";
 import { applyMiddleware, combineReducers, compose, createStore, Store } from "redux";
 import users from "./reducers/index.js";
 import redux_logger from "./redux_logger.js";
@@ -17,7 +17,7 @@ const enhancer = compose(
       // If you are using the devToolsExtension, you can add it here also
       // (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
   );
-const store : Store<any> = createStore(
+const store: Store<any> = createStore(
   reducers,
   {}, // initial state
   enhancer,

@@ -1,5 +1,5 @@
 "use strict";
-import { graphql, compose } from "react-apollo";
+import { compose, graphql } from "react-apollo";
 
 //
 // Map Apollo GraphQL queries and mutations
