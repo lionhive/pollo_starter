@@ -30,7 +30,7 @@ class User extends Component<Props, State> {
     addUser: React.PropTypes.func.isRequired,
   };
   // Calls user changed redux action.
-  onUsernameChanged(username: String) {
+  onUsernameChanged(username: string) {
     this.props.actions.actionUsernameChanged(username);
     console.log(this.props);
   }

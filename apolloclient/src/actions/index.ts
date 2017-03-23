@@ -2,8 +2,11 @@
 // to the redux store. Dispatching happens implicitly because the factories are wrapped
 // with bindActionCreators.
 "use strict";
-import * as UserActions from './users';
+// Actions are all now co-located with their respective components.
+// This ay be useful in future for shared actions.
 
-export const ActionCreators = Object.assign([],
-    UserActions,
-);
+//import * as UserActions from './users';
+
+//export const ActionCreators = Object.assign([],
+//    UserActions,
+//);

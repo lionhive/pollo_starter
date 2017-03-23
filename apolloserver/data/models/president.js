@@ -2,9 +2,9 @@
 const Mongoose = require('mongoose');
 
 const PresidentSchema = Mongoose.Schema({
-  name: String,
-  party: String,
-  term: String,
+  name: string,
+  party: string,
+  term: string,
 });
 const President = Mongoose.model('President', PresidentSchema);
 
