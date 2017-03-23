@@ -1,28 +1,27 @@
 // Container for fetching UserList data
 "use strict";
-import React, { Component } from 'react';
-import { Text } from 'react-native';
-import UserList from './component';
+import React, { Component } from "react";
+import { Text } from "react-native";
+import UserList from "./component";
 
-
-interface Props {
+interface IProps {
   data?: any;
 }  // empty.
-interface State {}  // empty.
-class UserListContainer extends React.Component<Props, State> {
-  constructor() {
-    super();
-  }
+interface IState {}  // empty.
+class UserListContainer extends React.Component<IProps, IState> {
   // TODO Injected propTypes should be defined in user.js.
-  static propTypes = {
+  public static propTypes = {
     data: React.PropTypes.shape({
       loading: React.PropTypes.bool,
       error: React.PropTypes.object,
       users: React.PropTypes.array,
     }).isRequired,
   };
+  constructor() {
+    super();
+  }
 
-  render() {
+  public render() {
     if (this.props.data.loading) {
       return (<Text style={{marginTop: 64}}>Loading</Text>);
     }
@@ -39,7 +38,6 @@ class UserListContainer extends React.Component<Props, State> {
   }
 }
 
-
 // Inject redux actions and gql queries.
-import Connector from './connector.js';
+import Connector from "./connector.js";
 export default Connector(UserListContainer);

@@ -1,5 +1,5 @@
 "use strict";
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   Image,
   StyleSheet,
@@ -7,19 +7,19 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-} from 'react-native';
-import { Actions } from 'react-native-router-flux'
-import styles from './styles';
+} from "react-native";
+import { Actions } from "react-native-router-flux"
+import styles from "./styles";
 
-const background = require('../../../resources/components/login/images/background_anim.gif');
+const background = require("../../../resources/components/login/images/background_anim.gif");
 const lockIcon = require("../../../resources/components/login/images/lock.png");
 const personIcon = require("../../../resources/components/login/images/person.png");
-const bear = require('../../../resources/components/login/images/bear.png');
+const bear = require("../../../resources/components/login/images/bear.png");
 
 
-interface Props {}  // empty.
-interface State {}  // empty.
-class Login extends Component<Props, State> {
+interface IProps { }  // empty.
+interface IState { }  // empty.
+class Login extends Component<IProps, IState> {
   constructor() {
     super();
   }
@@ -27,7 +27,7 @@ class Login extends Component<Props, State> {
     Actions.user_scene();
   }
   render() {
-    return(
+    return (
       <Image
         style={[styles.background, styles.container]}
         source={background}
@@ -37,15 +37,15 @@ class Login extends Component<Props, State> {
           <View style={styles.logoWrap} >
             <View style={styles.logoIconWrap} >
               <Image
-                  source={bear}
-                  style={styles.logoIcon}
-                  resizeMode="contain"
+                source={bear}
+                style={styles.logoIcon}
+                resizeMode="contain"
               />
               <Text style={styles.logoText}>bearbnb</Text>
             </View>
           </View>
         </View>
-        <View style={styles.wrapper} > 
+        <View style={styles.wrapper} >
           <View style={styles.inputWrap}>
             <View style={styles.iconWrap}>
               <Image
@@ -87,7 +87,8 @@ class Login extends Component<Props, State> {
           </TouchableOpacity>
         </View>
         <View style={styles.container} />
-      </Image>)};
+      </Image>)
+  };
 };
 
 export default Login;

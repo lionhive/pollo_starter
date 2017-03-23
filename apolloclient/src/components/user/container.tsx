@@ -1,19 +1,19 @@
 // User Component declaration. 
 "use strict";
-import React, { Component } from 'react'
-import { View, Text, TextInput } from 'react-native'
-import styles from './styles.js';
+import React, { Component } from "react";
+import { Text, TextInput, View } from "react-native";
+import styles from "./styles.js";
 
 
-interface Props {
+interface IProps {
   actions: any;
   addUser: Function;
   searchedRecipes: any;
   data: any;
   users: any;
 } 
-interface State {}  // empty.
-class User extends Component<Props, State> {
+interface IState {}  // empty.
+class User extends Component<IProps, IState> {
   constructor() {
     super();
     this.onUsernameChanged = this.onUsernameChanged.bind(this);
@@ -61,12 +61,12 @@ class User extends Component<Props, State> {
     }
     return (
       <View style={styles.container}>
-        <Text style={{textAlign: 'center'}}>Show User</Text>
+        <Text style={{textAlign: "center"}}>Show User</Text>
         <TextInput
           onChangeText={this.onUsernameChanged}
           style={styles.input} />
         <TextInput />
-        <Text style={{textAlign: 'center'}}>Add User</Text>
+        <Text style={{textAlign: "center"}}>Add User</Text>
         <TextInput
           onEndEditing={this.onAddUser}
           style={styles.input} />
@@ -75,10 +75,10 @@ class User extends Component<Props, State> {
         <Text>Name: {this.props.data.user.name}</Text>
         <Text>Username: {this.props.data.user.username}</Text>
       </View>
-    )
+    );
   }
 }
 
 // Inject redux actions and gql queries.
-import Connector from './connector.js';
+import Connector from "./connector.js";
 export default Connector(User);

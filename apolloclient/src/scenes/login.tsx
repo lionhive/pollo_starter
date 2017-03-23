@@ -1,14 +1,13 @@
 "use strict";
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   View,
-} from 'react-native';
-import Login from '../components/login/container';
-
+} from "react-native";
+import Login from "../components/login/container";
 
 class LoginScene extends Component<void, void> {
-  render() {
+  public render() {
     return (<Login/>);
   };
 }

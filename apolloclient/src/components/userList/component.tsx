@@ -1,14 +1,14 @@
 "use strict";
-import React, { Component } from 'react';
-import {ScrollView, Text, View} from 'react-native';
-import styles from './styles';
+import React, { Component } from "react";
+import {ScrollView, Text, View} from "react-native";
+import styles from "./styles";
 
 // Presentational component for rendering.
-interface Props {
+interface IProps {
   users: any;
 }  // empty.
-interface State {}  // empty.
-class UserList extends React.Component<Props, State> {
+interface IState {}  // empty.
+class UserList extends React.Component<IProps, IState> {
   constructor(props: any) {
     super(props);
   }
@@ -23,6 +23,5 @@ class UserList extends React.Component<Props, State> {
     return <Text style={styles.row}>Username:{name} Name:{username}</Text>;
   }
 }
-
 
 export default UserList;

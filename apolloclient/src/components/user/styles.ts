@@ -1,16 +1,16 @@
-import { StyleSheet, ViewStyle } from 'react-native';
+import { StyleSheet, ViewStyle } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
   } as ViewStyle,
   input: {
-    backgroundColor: '#dddddd',
+    backgroundColor: "#dddddd",
     height: 50,
     margin: 20,
     marginBottom: 0,
-    paddingLeft: 10
+    paddingLeft: 10,
   } as ViewStyle,
 });
 

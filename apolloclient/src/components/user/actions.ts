@@ -1,5 +1,5 @@
 "use strict";
-import * as types from './action_types.js';
+import * as types from "./action_types.js";
 
 export function actionUsernameChanged(username: string) {
   return {

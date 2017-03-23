@@ -1,11 +1,11 @@
 "use strict";
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Login from "./component";
 
-interface Props {}  // empty.
-interface State {}  // empty.
-class LoginContainer extends Component<Props, State> {
+interface IProps {}  // empty.
+interface IState {}  // empty.
+class LoginContainer extends Component<IProps, IState> {
   render() {
     return (<Login/>);
   }

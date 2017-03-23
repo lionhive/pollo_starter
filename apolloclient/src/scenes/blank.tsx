@@ -1,27 +1,27 @@
 "use strict";
-// User Component declaration. 
+// User Component declaration.
 
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { Actions } from 'react-native-router-flux'
+import React, { Component } from "react";
+import { Text, View } from "react-native";
+import { Actions } from "react-native-router-flux";
 
-import styles from '../styles/blank';
-import UserListContainer from '../components/userList/container.js';
+import UserListContainer from "../components/userList/container.js";
+import styles from "../styles/blank";
 
-interface Props {}  // empty.
-interface State {}  // empty.
+interface IProps {}  // empty.
+interface IState {}  // empty.
 
-class Blank extends Component<Props, State> {
+class Blank extends Component<IProps, IState> {
+  private static propTypes = {
+  };
   constructor() {
     super();
   }
-  static propTypes = {
-  };
 
-  render () {
+  public render () {
     return (
       <View style={styles.container}>
-        <Text style={{textAlign: 'center'}}>Blank Component</Text>
+        <Text style={{textAlign: "center"}}>Blank Component</Text>
         <UserListContainer/>
         <Text onPress={() => Actions.user_scene()}>
             Navigate to User Screen
@@ -30,7 +30,7 @@ class Blank extends Component<Props, State> {
             Navigate to President Screen
         </Text>
       </View>
-    )
+    );
   }
 }
 

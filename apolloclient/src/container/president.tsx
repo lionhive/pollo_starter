@@ -1,36 +1,35 @@
 "use strict";
-import React, { Component } from 'react';
-import { View, ViewStyle, Text, TextInput, StyleSheet } from 'react-native';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
+import React, { Component } from "react";
+import { graphql } from "react-apollo";
+import { StyleSheet, Text, TextInput, View, ViewStyle } from "react-native";
 
-
-interface Props {}  // empty.
-interface State {
+interface IProps {}  // empty.
+interface IState {
   name: string;
-}  // empty.class 
+}  // empty.class
 
-class President extends Component<Props, State> {
+class President extends Component<IProps, IState> {
   constructor() {
-    super()
+    super();
     this.state = {
-      name: 'George Washington',
-    }
-    this.updateName = this.updateName.bind(this)
+      name: "George Washington",
+    };
+    this.updateName = this.updateName.bind(this);
   }
-  updateName(name: string) {
+  public updateName(name: string) {
     this.setState({
-      name
-    })
+      name,
+    });
   }
-  render () {
+  public render () {
     const query = gql`query PresidentQuery($name: String!) { 
       president(name: $name) {
         name
         term
         party
       }
-    }`
+    }`;
 
     const PresidentElem = ({ data }: { data: any }) => (
       <View style={{paddingLeft: 20, paddingTop: 20}}>
@@ -38,36 +37,36 @@ class President extends Component<Props, State> {
         <Text>Party: {data.president && data.president.party}</Text>
         <Text>Term: {data.president && data.president.term}</Text>
       </View>
-    )
-    
+    );
+
     const ViewWithData: any = graphql(query, {
-      options: { variables: { name: this.state.name } }
-    })(PresidentElem)
+      options: { variables: { name: this.state.name } },
+    })(PresidentElem);
 
     return (
       <View style={styles.container}>
-        <Text style={{textAlign: 'center'}}>Find President Info</Text>
+        <Text style={{textAlign: "center"}}>Find President Info</Text>
         <TextInput
           onChangeText={this.updateName}
           style={styles.input} />
         <ViewWithData />
       </View>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
   } as ViewStyle,
   input: {
-    backgroundColor: '#dddddd',
+    backgroundColor: "#dddddd",
     height: 50,
     margin: 20,
     marginBottom: 0,
-    paddingLeft: 10
-  } as ViewStyle
-})
+    paddingLeft: 10,
+  } as ViewStyle,
+});
 
 export default President;

@@ -1,5 +1,5 @@
 "use strict";
-import gql from 'graphql-tag'
+import gql from "graphql-tag"
 
 const userListQuery = gql`query UserListQuery {
   users {
@@ -7,6 +7,6 @@ const userListQuery = gql`query UserListQuery {
     name
     username
   }
-}`; 
+}`;
 
 export { userListQuery };

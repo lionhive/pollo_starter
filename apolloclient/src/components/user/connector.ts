@@ -6,9 +6,9 @@
 // https://goshakkk.name/redux-antipattern-mapstatetoprops/
 //
 
-import { bindActionCreators, ActionCreatorsMapObject } from 'redux'
-import { connect } from 'react-redux';
-import { graphql, compose } from 'react-apollo';
+import { compose, graphql } from "react-apollo";
+import { connect } from "react-redux";
+import { ActionCreatorsMapObject, bindActionCreators } from "redux";
 
 //
 // Map Redux action functions.
@@ -21,7 +21,7 @@ function mapStateToProps(state: any) {
     users: state.users,
    };
 }
-import * as actionCreators from './actions';
+import * as actionCreators from "./actions";
 // Note: It is possible to bind ActionCreators to other functions
 // besides Props. See http://stackoverflow.com/questions/34458261/how-to-get-simple-dispatch-from-this-props-using-connect-w-redux
 function mapDispatchToProps(dispatch: any) {
@@ -33,7 +33,7 @@ function mapDispatchToProps(dispatch: any) {
 //
 // Map Apollo GraphQL queries and mutations
 //
-import {userQuery, addUserMutation} from './queries.js';
+import {userQuery, addUserMutation} from "./queries.js";
 const userQueryOptions = {
       options: { variables: { name: "tvykruta" } }};
 const addUserMutationOptions = { name: "addUser" };
