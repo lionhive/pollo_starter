@@ -4,7 +4,12 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import UserList from './component.js';
 
-class UserListContainer extends React.Component {
+
+interface Props {
+  data: any;
+}  // empty.
+interface State {}  // empty.
+class UserListContainer extends React.Component<Props, State> {
   constructor() {
     super();
   }
@@ -17,7 +22,7 @@ class UserListContainer extends React.Component {
     }).isRequired,
   };
 
-  render () {
+  render() {
     if (this.props.data.loading) {
       return (<Text style={{marginTop: 64}}>Loading</Text>);
     }

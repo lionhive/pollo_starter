@@ -11,7 +11,7 @@ interface Props {
   searchedRecipes: any;
   data: any;
   users: any;
-}  // empty.
+} 
 interface State {}  // empty.
 class User extends Component<Props, State> {
   constructor() {
@@ -45,7 +45,7 @@ class User extends Component<Props, State> {
           key => this.props.searchedRecipes[key]);
   }
 
-  render () {
+  render() {
     if (this.props.data.loading) {
       return (<Text style={{marginTop: 64}}>Loading</Text>);
     }
