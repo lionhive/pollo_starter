@@ -1,12 +1,13 @@
 // Defines GraphQL definitions.
 const queryDefinitions = `
 type RootQuery {
+  authenticate_user(username: String, password: String): Authentication
+
   president(name: String, party: String, term: String): President
   presidents: [President]
   
   user(username: String, name: String): User
   users: [User]
-  user_authenticate(username: String, password: String): Authentication
 
   user_extension(username: String, key: String): Extension
 
