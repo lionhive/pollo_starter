@@ -84,4 +84,4 @@ function setup(app, findUserCallback) {
   });
 }
 
-module.exports = { setup };
+module.exports = { setup, createJwtToken};

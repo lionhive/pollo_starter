@@ -1,5 +1,10 @@
 // Defines GraphQL definitions.
 const userDefinitions = `
+type Authentication {
+  token: String
+  message: String
+}
+
 type Extension {
   key: String
   val_int: Int

@@ -6,6 +6,8 @@ type RootQuery {
   
   user(username: String, name: String): User
   users: [User]
+  user_authenticate(username: String, password: String): Authentication
+
   user_extension(username: String, key: String): Extension
 
   service(name: String): Service
