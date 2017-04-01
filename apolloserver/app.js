@@ -30,6 +30,11 @@ const executableSchema = makeExecutableSchema({
   logger,
 });
 
+// Set up authentication with passportJs and add to app routing.
+const Utils = require('./utils/utils');
+var Authentication = require('./authentication/authentication');
+Authentication.setup(app, Utils.findUser);
+
 app.use('/graphql', bodyParser.json(), apolloExpress({
   schema: executableSchema,
   context: {

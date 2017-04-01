@@ -10,11 +10,15 @@
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^0.3.3",
-    "body-parser": "^1.16.1",
+    "body-parser": "^1.17.1",
     "express": "^4.14.1",
     "graphql": "^0.9.1",
     "graphql-tools": "^0.10.0",
+    "jsonwebtoken": "^7.3.0",
+    "lodash": "^4.17.4",
     "mongoose": "^4.8.4",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
     "react-native-router-flux": "^3.38.0",
     "request": "^2.79.0",
     "request-promise": "^4.1.1"

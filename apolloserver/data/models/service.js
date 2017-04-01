@@ -3,9 +3,9 @@ const Mongoose = require('mongoose');
 
 const ServiceSchema = Mongoose.Schema({
   name: { type: String, required: true, unique: true },
-  category: string,
+  category: String,
   provider: this,
-  cost: number,
+  cost: Number,
 });
 const Service = Mongoose.model('Service', ServiceSchema);
 
