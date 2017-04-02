@@ -8,7 +8,8 @@ const userQuery = gql`query UserQuery($name: String!) {
   }
 }`;
 
-const addUserMutation = gql`mutation AddUserMutation($username: String!, $name: String!, $password: String!) {
+const addUserMutation = gql`
+  mutation AddUserMutation($username: String!, $name: String!, $password: String!) {
   add_user(username:$username, name:$name, password:$password) {
     name
   }

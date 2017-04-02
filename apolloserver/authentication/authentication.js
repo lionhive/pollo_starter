@@ -73,9 +73,7 @@ function setup(app, findUserCallback) {
   passport.use(strategy);
   app.use(passport.initialize());
   // parse application/x-www-form-urlencoded asier testing with Postman or HTML
-  app.use(bodyParser.urlencoded({
-    extended: true
-  }));
+  app.use(bodyParser.urlencoded({extended: true}));
   // parse application/json
   app.use(bodyParser.json())
   app.post("/login", AuthenticateUserAndReturnToken);
@@ -84,4 +82,4 @@ function setup(app, findUserCallback) {
   });
 }
 
-module.exports = { setup, createJwtToken};
+module.exports = {setup, createJwtToken};

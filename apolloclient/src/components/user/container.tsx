@@ -6,17 +6,18 @@ import styles from "./styles.js";
 
 interface IProps {
   actions: any;
-  addUser: Function;
+  addUserMutation: Function;
   searchedRecipes: any;
   data: any;
   users: any;
-}
-interface IState {}  // empty.
+};
+interface IState { };
+
 class User extends Component<IProps, IState> {
   // TODO Injected propTypes should be defined in user.js.
   public static propTypes = {
     // mutations
-    addUser: React.PropTypes.func.isRequired,
+    addUserMutation: React.PropTypes.func.isRequired,
     data: React.PropTypes.shape({
       error: React.PropTypes.object,
       loading: React.PropTypes.bool,
@@ -37,36 +38,41 @@ class User extends Component<IProps, IState> {
   // Calls add user mutation.
   private onAddUser(event: any) {
     let username = event.nativeEvent.text;
-    let vars = {username, name: username, password: "test"};
-    this.props.addUser({variables: vars});
+    let vars = { username, name: username, password: "test" };
+    console.log("calling addUserMUtation");
+    this.props.addUserMutation({ variables: vars }).then((response: any) => {
+      console.log("response: " + response);
+    }).catch((err: any) => {
+      console.error(err);
+    });
   }
   private recipes() {
-      return Object.keys(this.props.searchedRecipes).map(
-          (key) => this.props.searchedRecipes[key]);
+    return Object.keys(this.props.searchedRecipes).map(
+      (key) => this.props.searchedRecipes[key]);
   }
 
   public render() {
     if (this.props.data.loading) {
-      return (<Text style={{marginTop: 64}}>Loading</Text>);
+      return (<Text style={{ marginTop: 64 }}>Loading</Text>);
     }
 
     if (this.props.data.error) {
       console.log(this.props.data.error);
-      return (<Text style={{marginTop: 64}}>An unexpected error occurred</Text>);
+      return (<Text style={{ marginTop: 64 }}>An unexpected error occurred</Text>);
     }
 
     console.log(this.props);
     if (!this.props.data.user) {
-      return (<Text style={{marginTop: 64}}>User not found.</Text>);
+      return (<Text style={{ marginTop: 64 }}>User not found.</Text>);
     }
     return (
       <View style={styles.container}>
-        <Text style={{textAlign: "center"}}>Show User</Text>
+        <Text style={{ textAlign: "center" }}>Show User</Text>
         <TextInput
           onChangeText={this.onUsernameChanged}
           style={styles.input} />
         <TextInput />
-        <Text style={{textAlign: "center"}}>Add User</Text>
+        <Text style={{ textAlign: "center" }}>Add User</Text>
         <TextInput
           onEndEditing={this.onAddUser}
           style={styles.input} />

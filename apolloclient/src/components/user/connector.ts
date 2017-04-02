@@ -15,16 +15,17 @@ import { ActionCreatorsMapObject, bindActionCreators } from "redux";
 //
 
 // Map redux store state to properties.
-// state.<reducername> is the reducers/<file.js> name.
+// Access through props.data.<name>
 function mapStateToProps(state: any) {
   return {
     users: state.users,
    };
 }
-import * as actionCreators from "./actions";
+
 // Note: It is possible to bind ActionCreators to other functions
 // besides Props. See http://stackoverflow.com/questions/34458261/
 // how-to-get-simple-dispatch-from-this-props-using-connect-w-redux
+import * as actionCreators from "./actions";
 function mapDispatchToProps(dispatch: any) {
     let actionCreatorsMap = {...actionCreators} as ActionCreatorsMapObject;
     // 'actions:' organizes callbacks into props.actions.<function_name>.
@@ -37,7 +38,8 @@ function mapDispatchToProps(dispatch: any) {
 import {addUserMutation, userQuery} from "./queries.js";
 const userQueryOptions = {
       options: { variables: { name: "tvykruta" } }};
-const addUserMutationOptions = { name: "addUser" };
+// Without this option, the function will be called this.props.mutate().
+const addUserMutationOptions = { name: "addUserMutation" };
 
 //
 // Generate final connected Component by injecting queries nad actions into User.

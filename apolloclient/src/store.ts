@@ -9,9 +9,12 @@ const client = new ApolloClient({
   networkInterface: createNetworkInterface({ uri: "http://localhost:8080/graphql"}),
 });
 
+import { reducer as formReducer } from "redux-form";
+
 const reducers = combineReducers({
-  users,
-  apollo: client.reducer()});
+  apollo: client.reducer(),
+  form: formReducer,
+  users});
 const enhancer = compose(
       applyMiddleware(client.middleware(), ...redux_logger),
       // If you are using the devToolsExtension, you can add it here also

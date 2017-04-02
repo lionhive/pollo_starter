@@ -8,8 +8,8 @@ import { Actions } from "react-native-router-flux";
 import UserListContainer from "../components/userList/container.js";
 import styles from "../styles/blank";
 
-interface IProps {}  // empty.
-interface IState {}  // empty.
+interface IProps {};
+interface IState {};
 
 class Blank extends Component<IProps, IState> {
   private static propTypes = {

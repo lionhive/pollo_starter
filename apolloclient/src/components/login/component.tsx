@@ -16,8 +16,9 @@ const lockIcon = require("../../../resources/components/login/images/lock.png");
 const personIcon = require("../../../resources/components/login/images/person.png");
 const bear = require("../../../resources/components/login/images/bear.png");
 
-interface IProps { }  // empty.
-interface IState { }  // empty.
+interface IProps {};
+interface IState {};
+
 class Login extends Component<IProps, IState> {
   constructor() {
     super();
