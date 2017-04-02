@@ -13,8 +13,8 @@ import Login from "./scenes/login";
 
 const scenes = Actions.create(
   <Scene key="root">
-    <Scene key="auth" component={Auth} title="Login" initial={true} hideNavBar={true} type="replace" />    
-    <Scene key="login_scene" component={Login} title="Login" initial={false} hideNavBar={true} type="replace" />    
+    <Scene key="auth" component={Auth} title="Login" initial={true} hideNavBar={true} type="replace" />
+    <Scene key="login_scene" component={Login} title="Login" initial={false} hideNavBar={true} type="replace" />
     <Scene key="blank_scene" component={Blank} title="Blank" initial={false} type="replace" />
     <Scene key="president_scene" component={President} title="President" initial={false} type="replace" />
     <Scene key="user_scene" component={User} title="User" initial={false} type="replace" />
@@ -23,6 +23,6 @@ const scenes = Actions.create(
 
 export const routes = (
   <ApolloProvider store={store} client={client}>
-    <Router scenes={scenes}/>
+    <Router scenes={scenes} />
   </ApolloProvider>
 );

@@ -26,4 +26,8 @@ const store: Store<any> = createStore(
   enhancer,
 );
 
+// Load auth token if one exists.
+import Auth from "./utils/auth/load";
+Auth(store);
+
 export { client, store };

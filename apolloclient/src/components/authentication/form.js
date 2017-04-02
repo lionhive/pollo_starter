@@ -65,7 +65,6 @@ const Form = props => {
 
 const validate = (values) => {
   const errors = {};
-  /*
   if (!values.email) {
     errors.email = 'Required';
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
@@ -78,8 +77,8 @@ const validate = (values) => {
     errors.password = 'Required';
   }
   if (values.password && values.password.length < 8) {
-    errors.password = 'Password must be 8 charaters long.';
-  }*/
+    //errors.password = 'Password must be 8 charaters long.';
+  }
   return errors;
 }
 
@@ -91,6 +90,9 @@ const warn = (values) => {
   const warnings = {};
   if (values.password && !containsSpecialCharacter(values.password)) {
     warnings.password = "Password should contain a number or special character.";
+  }
+  if (values.password && values.password.length < 8) {
+    warnings.password = 'Password must be 8 charaters long.';
   }
   return warnings;
 }
