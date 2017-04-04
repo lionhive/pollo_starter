@@ -7,15 +7,19 @@ import { client, store } from "./store.js";
 
 import Auth from "./components/authentication/container";
 import User from "./components/user/container";
+import UserProfile from "./components/user_profile/container";
 import President from "./container/president";
 import Blank from "./scenes/blank";
+import Loading from "./scenes/loading";
 import Login from "./scenes/login";
 
 const scenes = Actions.create(
   <Scene key="root">
-    <Scene key="auth" component={Auth} title="Login" initial={true} hideNavBar={true} type="replace" />
-    <Scene key="login_scene" component={Login} title="Login" initial={false} hideNavBar={true} type="replace" />
+    <Scene key="loading" component={Loading} title="Loading" initial={true} type="replace" />
     <Scene key="blank_scene" component={Blank} title="Blank" initial={false} type="replace" />
+    <Scene key="profile_scene" component={UserProfile} title="UserProfile" initial={false} hideNavBar={true} type="replace" />
+    <Scene key="auth_scene" component={Auth} title="Login" initial={false} hideNavBar={true} type="replace" />
+    <Scene key="login_scene" component={Login} title="Login" initial={false} hideNavBar={true} type="replace" />
     <Scene key="president_scene" component={President} title="President" initial={false} type="replace" />
     <Scene key="user_scene" component={User} title="User" initial={false} type="replace" />
   </Scene>,

@@ -46,10 +46,6 @@ class User extends Component<IProps, IState> {
       console.error(err);
     });
   }
-  private recipes() {
-    return Object.keys(this.props.searchedRecipes).map(
-      (key) => this.props.searchedRecipes[key]);
-  }
 
   public render() {
     if (this.props.data.loading) {

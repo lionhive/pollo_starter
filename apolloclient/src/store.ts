@@ -2,24 +2,27 @@
 "use strict";
 import ApolloClient, { createNetworkInterface } from "apollo-client";
 import { applyMiddleware, combineReducers, compose, createStore, Store } from "redux";
-import users from "./reducers/index.js";
+import all_reducers from "./reducers/index.js";
 import redux_logger from "./redux_logger.js";
 
-const client = new ApolloClient({
-  networkInterface: createNetworkInterface({ uri: "http://localhost:8080/graphql"}),
-});
+// Set up network listener.
+const networkInterface = createNetworkInterface({ uri: "http://localhost:8080/graphql" });
+const client = new ApolloClient({ networkInterface });
 
+// Set up apollo reducer
 import { reducer as formReducer } from "redux-form";
 
 const reducers = combineReducers({
   apollo: client.reducer(),
   form: formReducer,
-  users});
+  app: all_reducers
+});
+// Inject enhancers such as logging tools.
 const enhancer = compose(
-      applyMiddleware(client.middleware(), ...redux_logger),
-      // If you are using the devToolsExtension, you can add it here also
-      // (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
-  );
+  applyMiddleware(client.middleware(), ...redux_logger),
+  // If you are using the devToolsExtension, you can add it here also
+  // (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
+);
 const store: Store<any> = createStore(
   reducers,
   {}, // initial state
@@ -27,7 +30,23 @@ const store: Store<any> = createStore(
 );
 
 // Load auth token if one exists.
+let authToken = "empty";
 import Auth from "./utils/auth/load";
-Auth(store);
+// Auth(store).then(token => authToken = token);;
+
+// Inject authenticated JWT token into 'headers.authorization'.
+networkInterface.use([{
+  applyMiddleware(req, next) {
+    if (!req.options.headers) {
+      req.options.headers = {};
+    }
+    const token = store.getState().app.auth_token;
+    if (token) {
+      console.log("issuing network request with header."); ;
+      req.options.headers.authorization = "JWT " + token;
+    }
+    next();
+  },
+}]);
 
 export { client, store };

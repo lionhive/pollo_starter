@@ -9,7 +9,7 @@ async function tryLoadToken() {
   try {
     const token = await AsyncStorage.getItem(storageKey);
     if (token) {
-      console.log("Auth token loaded:");
+      console.log("Auth token loaded:" + token);
       return token;
     } else {
       console.log("Auth token token not found.");
@@ -17,6 +17,7 @@ async function tryLoadToken() {
   } catch (error) {
     console.log("Error loading auth token:" + error);
   }
+  return null;
 };
 
 // Write token to local storage.

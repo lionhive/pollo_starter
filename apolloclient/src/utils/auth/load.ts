@@ -7,6 +7,7 @@ export default async function tryAutoLoginUser(store: any) {
   const token = await tryLoadToken();
   if (token) {
     // Update redux store and aupplication state.
-    store.dispatch({ type: types.AUTH_SIGNIN });
+    await store.dispatch({ type: types.AUTH_SIGNIN, token });
   }
+  return token;
 }

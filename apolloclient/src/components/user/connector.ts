@@ -19,7 +19,7 @@ import { ActionCreatorsMapObject, bindActionCreators } from "redux";
 function mapStateToProps(state: any) {
   return {
     users: state.users,
-   };
+  };
 }
 
 // Note: It is possible to bind ActionCreators to other functions
@@ -27,17 +27,18 @@ function mapStateToProps(state: any) {
 // how-to-get-simple-dispatch-from-this-props-using-connect-w-redux
 import * as actionCreators from "./actions";
 function mapDispatchToProps(dispatch: any) {
-    let actionCreatorsMap = {...actionCreators} as ActionCreatorsMapObject;
-    // 'actions:' organizes callbacks into props.actions.<function_name>.
-    return {actions: bindActionCreators(actionCreatorsMap, dispatch)};
+  let actionCreatorsMap = { ...actionCreators } as ActionCreatorsMapObject;
+  // 'actions:' organizes callbacks into props.actions.<function_name>.
+  return { actions: bindActionCreators(actionCreatorsMap, dispatch) };
 }
 
 //
 // Map Apollo GraphQL queries and mutations
 //
-import {addUserMutation, userQuery} from "./queries.js";
+import { addUserMutation, userQuery } from "./queries.js";
 const userQueryOptions = {
-      options: { variables: { name: "tvykruta" } }};
+  options: { variables: { name: "tvykruta" } }
+};
 // Without this option, the function will be called this.props.mutate().
 const addUserMutationOptions = { name: "addUserMutation" };
 
