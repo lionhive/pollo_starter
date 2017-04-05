@@ -1,7 +1,7 @@
-"use string";
+"use strict";
 // React-redux form example with validation and normalization.
 // In the future switch to react-redux-clean-form, comess with nice styling but is broken now.
-import React from "react";
+import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
@@ -11,8 +11,12 @@ import {
 } from "react-native";
 import { Field, reduxForm } from "redux-form";
 
-const renderInput = ({ input: { onChange, ...restInput }, placeholder, secureTextEntry,
-  meta: { touched, error, warning } }) => {
+// This is a redux-forms stateless function documented here:
+// http://redux-form.com/6.0.0-alpha.4/docs/api/Field.md/#usage
+const renderInput = (props: any) => {
+  const { input: { onChange, ...restInput } } = props;
+  const { meta: { touched, error, warning } } = props;
+  const { placeholder, secureTextEntry } = props;
   return (<View>
     <TextInput
       autoCapitalize="none"
@@ -28,45 +32,58 @@ const renderInput = ({ input: { onChange, ...restInput }, placeholder, secureTex
 };
 
 // Todo: Move error rendering outside the form, leave form to be form only.
-const renderErrors = (errors) => (
+const renderErrors = (errors: any) => (
   <View >
-    {errors.map((error, index) => <Text style={styles.error} key={index}>{error}</Text>)}
+    {errors.map((error: string, index: any) => <Text style={styles.error} key={index}>{error}</Text>)}
   </View>
 );
 
-const Form = (props) => {
-  console.log("Form");
-  console.log(props);
-  // Copy data injected into Props to local variables.
-  const { handleSubmit } = props;
-  const errors = props.errors <= 0 ? null : renderErrors(props.errors);
-  const signingIn = props.signingIn ? <Text style={styles.error}>Logging in...</Text> : <Text/>;
-  console.log("rendering signingIn: " + props.signingIn)
-  return (
-    <View style={styles.container}>
-      <Text>Email:</Text>
-      <Field name="username" placeholder="username" component={renderInput} />
-      <Field
-        name="phone"
-        component="input"
-        placeholder="555-123-4567"
-        normalize={normalizePhone}
-        component={renderInput}
-      />
-      <Text>Password:</Text>
-      <Field secureTextEntry={true} placeholder="password" name="password" component={renderInput} />
-      <TouchableOpacity onPress={handleSubmit}>
-        <Text style={styles.button}>Submit</Text>
-      </TouchableOpacity>
-      <Text></Text>
-      {errors}
-      {signingIn}
-    </View>
-  );
+interface IProps extends React.Props<Form> {
+  signingIn: boolean;
+  errors: any;
+  // handleSubmit calls onSubmit internally.
+  onSubmit: any;
+  handleSubmit?: any;
+};
+interface IState {
 };
 
-const validate = (values) => {
-  const errors = {};
+class Form extends Component<IProps, IState> {
+  constructor(props: any) {
+    super(props);
+    this.state = { errors: [] };
+  }
+  public render() {
+    const { handleSubmit } = this.props;
+    // Copy data injected into Props to local variables.
+    const errors = this.props.errors <= 0 ? null : renderErrors(this.props.errors);
+    const signingIn = this.props.signingIn ? <Text style={styles.error}>Logging in...</Text> : <Text />;
+    console.log("rendering signingIn: " + this.props.signingIn)
+    return (
+      <View style={styles.container}>
+        <Text>Email:</Text>
+        <Field name="username" placeholder="username" component={renderInput} />
+        <Field
+          name="phone"
+          placeholder="555-123-4567"
+          normalize={normalizePhone}
+          component={renderInput}
+        />
+        <Text>Password:</Text>
+        <Field secureTextEntry={true} placeholder="password" name="password" component={renderInput} />
+        <TouchableOpacity onPress={handleSubmit}>
+          <Text style={styles.button}>Submit</Text>
+        </TouchableOpacity>
+        <Text></Text>
+        {errors}
+        {signingIn}
+      </View>
+    );
+  }
+};
+
+const validate = (values: any) => {
+  const errors: any = {};
   if (!values.email) {
     errors.email = "Required";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
@@ -84,12 +101,15 @@ const validate = (values) => {
   return errors;
 };
 
-function containsSpecialCharacter(str) {
+function containsSpecialCharacter(str: string) {
   return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
 }
 
-const warn = (values) => {
-  const warnings = {};
+const warn = (values: any) => {
+  interface IWarnings {
+    password?: string;
+  }
+  const warnings: IWarnings = {};
   if (values.password && !containsSpecialCharacter(values.password)) {
     warnings.password = "Password should contain a number or special character.";
   }
@@ -99,7 +119,7 @@ const warn = (values) => {
   return warnings;
 };
 
-const normalizePhone = (value, previousValue) => {
+const normalizePhone = (value: string, previousValue: string) => {
   if (!value) {
     return value;
   }
@@ -129,7 +149,7 @@ const styles = StyleSheet.create({
     height: 30,
     lineHeight: 30,
     marginTop: 10,
-    textAlign: "center",
+    //    textAlign: "center",
     width: 250,
   },
   container: {

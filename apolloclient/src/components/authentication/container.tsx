@@ -19,8 +19,10 @@ class Authentication extends Component<IProps, IState> {
     this.state = { errors: [] };
   }
   public handleSubmit(values: any) {
+    console.log("handleSubmit");
     console.log(values);
     this.props.actions.signingIn(true);
+    console.log(values);
     this.props.authenticateUserMutation({ variables: values })
       .then((response: any) => {
         console.log(response);
