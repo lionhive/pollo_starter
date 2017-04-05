@@ -1,13 +1,6 @@
 "use strict";
-// Tries to restore session from local storage.
-// Loads jwt auth.
-//
-// 1. Dispatches Action to LOAD_LOCAL_TOKEN
-// 2. Reducer tires to load local LOAD_LOCAL_TOKEN
-// 3. If loaded, reducer dispatches LOAD_LOCAL_TOKEN_SUCCESS and SIGN_IN_SUCCESS
-// 4. Navigate to homepage
-// -----
-// 3. If no auth token, navigate to LOGIN page.
+// Tries to restore auth token from local storage and log user in.
+// If no auth token, navigate to LOGIN page.
 import React, { Component } from "react";
 import { Text, View } from "react-native";
 import { Actions } from "react-native-router-flux";
@@ -15,7 +8,6 @@ import { connect } from "react-redux";
 
 interface IProps extends React.Props<RestoreSession> {
   actions: any;
-  authenticated: any;
   hasErrored: any;
   isLoading: any;
   auth_token: string;
@@ -33,16 +25,16 @@ class RestoreSession extends Component<IProps, IState> {
   }
 
   public render() {
-  if (this.props.hasErrored) {
-    return <Text>Sorry! There was an error loading the items</Text>;
+    if (this.props.hasErrored) {
+      return <Text>Sorry! There was an error loading the items</Text>;
+    }
+    if (this.props.isLoading) {
+      return <Text>Loading…</Text>;
+    }
+    return (
+      <View><Text>Token loaded: {this.props.auth_token}</Text></View>
+    );
   }
-  if (this.props.isLoading) {
-    return <Text>Loading…</Text>;
-  }
-  return(
-    <View><Text>Token loaded: {this.props.auth_token}</Text></View>
-  );
-}
 };
 
 // Inject redux actions and gql queries.

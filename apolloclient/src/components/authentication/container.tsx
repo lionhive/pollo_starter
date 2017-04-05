@@ -6,11 +6,11 @@ import SignInForm from "./form";
 
 interface IProps extends React.Props<Authentication> {
   actions: any;
-  authenticated: any;
   authenticateUserMutation: Function;
+  signingIn: boolean,
 };
 interface IState {
-  errors: any;
+  errors: any,
 };
 
 class Authentication extends Component<IProps, IState> {
@@ -20,10 +20,10 @@ class Authentication extends Component<IProps, IState> {
   }
   public handleSubmit(values: any) {
     console.log(values);
+    this.props.actions.signingIn(true);
     this.props.authenticateUserMutation({ variables: values })
       .then((response: any) => {
         console.log(response);
-        //if (response.data.signIn.errors.length <= 0) {
         if (response.data.authenticate_user.token) {
           this.props.actions.signIn(response.data.authenticate_user.token);
           Actions.login_scene();
@@ -37,13 +37,17 @@ class Authentication extends Component<IProps, IState> {
       .catch((err: any) => {
         console.error(err);
       });
+    this.props.actions.signingIn(false);
   }
 
   public render() {
+    console.log("printing container props");
+    console.log(this.props);
     return (
       <SignInForm
         onSubmit={this.handleSubmit.bind(this)}
         errors={this.state.errors}
+        signingIn={this.props.signingIn}
       />
     );
   }

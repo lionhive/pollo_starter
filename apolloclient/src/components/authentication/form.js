@@ -1,15 +1,15 @@
 "use string";
 // React-redux form example with validation and normalization.
 // In the future switch to react-redux-clean-form, comess with nice styling but is broken now.
-import React from 'react'
+import React from "react";
 import {
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  View
-} from 'react-native'
-import { Field, reduxForm } from 'redux-form'
+  View,
+} from "react-native";
+import { Field, reduxForm } from "redux-form";
 
 const renderInput = ({ input: { onChange, ...restInput }, placeholder, secureTextEntry,
   meta: { touched, error, warning } }) => {
@@ -34,13 +34,14 @@ const renderErrors = (errors) => (
   </View>
 );
 
-const Form = props => {
-  console.log()
+const Form = (props) => {
+  console.log("Form");
   console.log(props);
   // Copy data injected into Props to local variables.
   const { handleSubmit } = props;
   const errors = props.errors <= 0 ? null : renderErrors(props.errors);
-
+  const signingIn = props.signingIn ? <Text style={styles.error}>Logging in...</Text> : <Text/>;
+  console.log("rendering signingIn: " + props.signingIn)
   return (
     <View style={styles.container}>
       <Text>Email:</Text>
@@ -59,28 +60,29 @@ const Form = props => {
       </TouchableOpacity>
       <Text></Text>
       {errors}
+      {signingIn}
     </View>
-  )
-}
+  );
+};
 
 const validate = (values) => {
   const errors = {};
   if (!values.email) {
-    errors.email = 'Required';
+    errors.email = "Required";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
+    errors.email = "Invalid email address";
   }
   if (!values.password) {
-    errors.password = 'Required';
+    errors.password = "Required";
   }
   if (!values.password) {
-    errors.password = 'Required';
+    errors.password = "Required";
   }
   if (values.password && values.password.length < 8) {
     //errors.password = 'Password must be 8 charaters long.';
   }
   return errors;
-}
+};
 
 function containsSpecialCharacter(str) {
   return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
@@ -92,58 +94,58 @@ const warn = (values) => {
     warnings.password = "Password should contain a number or special character.";
   }
   if (values.password && values.password.length < 8) {
-    warnings.password = 'Password must be 8 charaters long.';
+    warnings.password = "Password must be 8 charaters long.";
   }
   return warnings;
-}
+};
 
 const normalizePhone = (value, previousValue) => {
   if (!value) {
-    return value
+    return value;
   }
-  const onlyNums = value.replace(/[^\d]/g, '')
+  const onlyNums = value.replace(/[^\d]/g, "");
   if (!previousValue || value.length > previousValue.length) {
     // typing forward
     if (onlyNums.length === 3) {
-      return onlyNums + '-'
+      return onlyNums + "-";
     }
     if (onlyNums.length === 6) {
-      return onlyNums.slice(0, 3) + '-' + onlyNums.slice(3) + '-'
+      return onlyNums.slice(0, 3) + "-" + onlyNums.slice(3) + "-";
     }
   }
   if (onlyNums.length <= 3) {
-    return onlyNums
+    return onlyNums;
   }
   if (onlyNums.length <= 6) {
-    return onlyNums.slice(0, 3) + '-' + onlyNums.slice(3)
+    return onlyNums.slice(0, 3) + "-" + onlyNums.slice(3);
   }
-  return onlyNums.slice(0, 3) + '-' + onlyNums.slice(3, 6) + '-' + onlyNums.slice(6, 10)
-}
+  return onlyNums.slice(0, 3) + "-" + onlyNums.slice(3, 6) + "-" + onlyNums.slice(6, 10);
+};
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: 'blue',
-    color: 'white',
+    backgroundColor: "blue",
+    color: "white",
     height: 30,
     lineHeight: 30,
     marginTop: 10,
-    textAlign: 'center',
-    width: 250
+    textAlign: "center",
+    width: 250,
   },
   container: {
   },
   input: {
-    borderColor: 'black',
+    borderColor: "black",
     borderWidth: 1,
     height: 37,
-    width: 250
+    width: 250,
   },
   error: {
-    color: 'red',
-  }
-})
+    color: "red",
+  },
+});
 
 export default reduxForm({
-  form: 'login', // unique idenetifier
+  form: "login", // unique identifier
   validate, // validation function
 })(Form);

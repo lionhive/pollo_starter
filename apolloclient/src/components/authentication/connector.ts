@@ -6,7 +6,7 @@ import { ActionCreatorsMapObject, bindActionCreators } from "redux";
 // State will be available through state.<key_name> (see table below for keys)
 // Map redux store state to properties.
 function mapStateToProps(state: any) {
-  return { authenticated: state.authenticated };
+  return { signingIn: state.authentication.signingIn };
 }
 
 import * as actionCreators from "./actions";

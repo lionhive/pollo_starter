@@ -2,8 +2,14 @@
 import { clearToken, saveToken } from "../../utils/auth//utils_local_storage";
 import * as types from "./action_types.js";
 
-// Handle user authentication.
-// TODO(tcykruta): Check for successful operation of ASyncStorage.
+
+export function signingIn(bool: boolean) {
+  return {
+    type: types.AUTH_SIGNING_IN,
+    signingIn: bool,
+  };
+};
+
 export function signIn(token: string) {
   saveToken(token);
   return {
@@ -17,3 +23,4 @@ export function signOut() {
   clearToken();
   return { type: types.AUTH_SIGNOUT };
 };
+

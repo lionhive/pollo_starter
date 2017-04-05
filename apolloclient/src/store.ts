@@ -2,8 +2,8 @@
 "use strict";
 import ApolloClient, { createNetworkInterface } from "apollo-client";
 import { applyMiddleware, combineReducers, compose, createStore, Store } from "redux";
-import all_reducers from "./reducers/index.js";
-import redux_logger from "./redux_logger.js";
+import all_reducers from "./reducers/index";
+import redux_logger from "./redux_logger";
 
 // Set up network listener.
 const networkInterface = createNetworkInterface({ uri: "http://localhost:8080/graphql" });
@@ -14,8 +14,8 @@ import { reducer as formReducer } from "redux-form";
 
 const reducers = combineReducers({
   apollo: client.reducer(),
+  ...all_reducers,
   form: formReducer,
-  app: all_reducers
 });
 // Inject enhancers such as logging tools.
 const enhancer = compose(
@@ -29,20 +29,15 @@ const store: Store<any> = createStore(
   enhancer,
 );
 
-// Load auth token if one exists.
-let authToken = "empty";
-import Auth from "./utils/auth/load";
-// Auth(store).then(token => authToken = token);;
-
 // Inject authenticated JWT token into 'headers.authorization'.
 networkInterface.use([{
   applyMiddleware(req, next) {
     if (!req.options.headers) {
       req.options.headers = {};
     }
-    const token = store.getState().app.auth_token;
+    const token = store.getState().auth.auth_token;
     if (token) {
-      console.log("issuing network request with header."); ;
+      console.log("issuing network request with header.");;
       req.options.headers.authorization = "JWT " + token;
     }
     next();

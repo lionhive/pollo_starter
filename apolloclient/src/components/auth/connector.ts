@@ -11,11 +11,12 @@ function mapDispatchToProps(dispatch: any) {
 }
 
 function mapStateToProps(state: any) {
+  console.log(state);
+
   return {
-    authenticated: state.app.authenticated,
-    auth_token: state.app.auth_token,
-    hasErrored: state.app.tokenHasErrored,
-    isLoading: state.app.tokenIsLoading,
+    auth_token: state.auth.auth_token,
+    hasErrored: state.auth.tokenHasErrored,
+    isLoading: state.auth.tokenIsLoading,
   }
 };
 
