@@ -1,4 +1,5 @@
 const {createJwtToken} = require('../../authentication/authentication');
+
 // Defines access functions for GraphQL schemas.
 const resolveFunctions = {
   Mutation: {

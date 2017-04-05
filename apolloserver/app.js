@@ -35,12 +35,14 @@ const Utils = require('./utils/utils');
 var Authentication = require('./authentication/authentication');
 Authentication.setup(app, Utils.findUser);
 
-app.use('/graphql', bodyParser.json(), apolloExpress({
+app.use('/graphql', bodyParser.json(), apolloExpress((request) => ({
   schema: executableSchema,
   context: {
     constructor: Connectors,
+    // Optionally pass token into context of Connectors.
+    token: Authentication.getTokenFromRequest(request),
   },
-}));
+})));
 
 app.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',

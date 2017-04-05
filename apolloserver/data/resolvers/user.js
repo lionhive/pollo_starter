@@ -1,4 +1,5 @@
-const {createJwtToken} = require('../../authentication/authentication');
+const {createJwtToke, decodeJwtToken} = require('../../authentication/authentication');
+
 // Defines access functions for GraphQL schemas.
 const resolveFunctions = {
   RootQuery: {
@@ -6,6 +7,17 @@ const resolveFunctions = {
     user(_, { username, name }, ctx) {
       const user = new ctx.constructor.User();
       return user.find(username, name);
+    },
+    // Requires token to be set.
+    user_authenticated(_, {}, ctx) {
+      const user = new ctx.constructor.User();
+      console.log(ctx.token);
+      if (!ctx.token) {
+        console.log("Auth token missing.");
+      }
+      let decoded = decodeJwtToken(ctx.token);
+      console.log(decoded);
+      return user.find(decoded.id);
     },
     users(_, {}, ctx) {
       const users = new ctx.constructor.User();

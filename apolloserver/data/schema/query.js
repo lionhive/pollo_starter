@@ -5,6 +5,7 @@ type RootQuery {
   presidents: [President]
   
   user(username: String, name: String): User
+  user_authenticated: User
   users: [User]
 
   user_extension(username: String, key: String): Extension
