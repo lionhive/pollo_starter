@@ -16,11 +16,6 @@ function mapDispatchToProps(dispatch: any) {
     return {actions: bindActionCreators(actionCreatorsMap, dispatch)};
 }
 
-// Expose props.authenticateUserMutation() function.
-import {authenticateUserMutation} from "./queries.js";
-const authenticateUserMutationOptions = { name: "authenticateUserMutation" };
-
 export default compose(
-  graphql(authenticateUserMutation, authenticateUserMutationOptions),
   connect(mapStateToProps, mapDispatchToProps),
 );

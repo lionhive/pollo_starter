@@ -2,6 +2,7 @@
 "use strict";
 import ApolloClient, { createNetworkInterface } from "apollo-client";
 import { applyMiddleware, combineReducers, compose, createStore, Store } from "redux";
+import redux_thunk from "redux-thunk";
 import all_reducers from "./reducers/index";
 import redux_logger from "./redux_logger";
 
@@ -19,7 +20,7 @@ const reducers = combineReducers({
 });
 // Inject enhancers such as logging tools.
 const enhancer = compose(
-  applyMiddleware(client.middleware(), ...redux_logger),
+  applyMiddleware(client.middleware(), redux_thunk.withExtraArgument(client), ...redux_logger),
   // If you are using the devToolsExtension, you can add it here also
   // (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
 );
@@ -37,7 +38,7 @@ networkInterface.use([{
     }
     const token = store.getState().auth.auth_token;
     if (token) {
-      console.log("issuing network request with header.");;
+      console.log("issuing network request with header."); ;
       req.options.headers.authorization = "JWT " + token;
     }
     next();

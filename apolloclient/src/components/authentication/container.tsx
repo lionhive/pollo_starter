@@ -18,28 +18,25 @@ class Authentication extends Component<IProps, IState> {
     super(props);
     this.state = { errors: [] };
   }
+
   public handleSubmit(values: any) {
-    console.log("handleSubmit");
-    console.log(values);
-    this.props.actions.signingIn(true);
-    console.log(values);
-    this.props.authenticateUserMutation({ variables: values })
-      .then((response: any) => {
-        console.log(response);
-        if (response.data.authenticate_user.token) {
-          this.props.actions.signIn(response.data.authenticate_user.token);
+    this.props.actions.signInFlow(values)
+      .then((result: any) => {
+        if (result.token) {
+          console.log("Log in complete");
+          console.log(result);
           Actions.login_scene();
         } else {
-          console.log("Auth failed due to error:" + response.data.authenticate_user.message);
           this.setState({
-            errors: [response.data.authenticate_user.message],
+            errors: [result.message],
           });
         }
-      })
-      .catch((err: any) => {
-        console.error(err);
+      }).catch((error: any) => {
+        console.log(error)
+        this.setState({
+          errors: [error],
+        });
       });
-    this.props.actions.signingIn(false);
   }
 
   public render() {

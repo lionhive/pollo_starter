@@ -3,8 +3,7 @@
 "use strict";
 import createLogger from "redux-logger";
 import promise from "redux-promise";
-import thunk from "redux-thunk";
 
 const logger = createLogger();
 
-export default [thunk, promise, logger];
+export default [promise, logger];
