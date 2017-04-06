@@ -30,7 +30,7 @@ class Blank extends Component<IProps, IState> {
         <Text onPress={() => Actions.president_scene()}>
           Navigate to President Screen
         </Text>
-        <Text onPress={() => Actions.login_scene()}>
+        <Text onPress={() => Actions.sign_in_email_scene()}>
           Navigate to Login Screen
         </Text>
       </View>

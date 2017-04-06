@@ -1,6 +1,6 @@
 "use strict";
 import createReducer from "../../lib/createReducer";
-import * as signin_types from "../authentication/action_types";
+import * as signin_types from "../../systems/auth/sign_in_email/action_types";
 import * as types from "./action_types";
 
 export function tokenHasErrored(state = false, action: any) {

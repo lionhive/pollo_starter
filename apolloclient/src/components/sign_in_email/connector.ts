@@ -1,5 +1,5 @@
 "use strict";
-import { compose, graphql } from "react-apollo";
+import { compose } from "react-apollo";
 import { connect } from "react-redux";
 import { ActionCreatorsMapObject, bindActionCreators } from "redux";
 
@@ -9,10 +9,9 @@ function mapStateToProps(state: any) {
   return { signingIn: state.authentication.signingIn };
 }
 
-import * as actionCreators from "./actions";
-// expose props.actions.<func_name> (see actionCreators)
+import {signInEmail} from "../../systems/auth/sign_in_email//action_creators";
 function mapDispatchToProps(dispatch: any) {
-    let actionCreatorsMap = {...actionCreators} as ActionCreatorsMapObject;
+    let actionCreatorsMap = {signInEmail} as ActionCreatorsMapObject;
     return {actions: bindActionCreators(actionCreatorsMap, dispatch)};
 }
 

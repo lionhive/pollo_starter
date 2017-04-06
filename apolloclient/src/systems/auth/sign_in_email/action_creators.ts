@@ -1,5 +1,5 @@
 "use strict";
-import { clearToken, saveToken } from "../../utils/auth//utils_local_storage";
+import { clearToken, saveToken } from "../../../utils/auth//utils_local_storage";
 import * as types from "./action_types";
 
 export function signingIn(bool: boolean) {
@@ -30,25 +30,12 @@ export function signOut() {
 };
 
 import * as server from "./server";
-// Tries to load auth token from local storage and initializes redux store.
-export function signInUser() {
-  console.log("testing direct graphql load..");
-  return (dispatch: any, getState: any, client: any) => {
-    console.log(client);
-    const variables = { username: "tom", password: "pass" };
-    return server.SignIn(client, variables);
-  };
-}
 
-
-export function signInFlow(values: any) {
-  console.log("signInFlow");
-  console.log(values);
+export function signInEmail(values: any) {
   return (dispatch: any, getState: any, client: any) => {
     dispatch(signingIn(true));
     return server.SignIn(client, values)
       .then((response: any) => {
-        console.log(response);
         if (response.data.authenticate_user.token) {
           dispatch(signIn(response.data.authenticate_user.token));
         } else {

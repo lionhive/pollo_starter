@@ -1,5 +1,4 @@
 "use strict";
-import createReducer from "../../lib/createReducer";
 import * as types from "./action_types";
 
 export function signingIn(state = false, action: any) {

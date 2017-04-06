@@ -1,8 +1,8 @@
 "use strict";
 import { Actions } from "react-native-router-flux";
 import thunk from "redux-thunk";
+import * as signin_types from "../../systems/auth/sign_in_email/action_types";
 import { tryLoadToken } from "../../utils/auth//utils_local_storage";
-import * as signin_types from "../authentication/action_types";
 import * as types from "./action_types.js";
 
 export function tokenHasErrored(bool: boolean = false) {

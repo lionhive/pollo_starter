@@ -38,7 +38,7 @@ const renderErrors = (errors: any) => (
   </View>
 );
 
-interface IProps extends React.Props<Form> {
+interface IProps extends React.Props<SignInEmailForm> {
   signingIn: boolean;
   errors: any;
   // handleSubmit calls onSubmit internally.
@@ -48,7 +48,7 @@ interface IProps extends React.Props<Form> {
 interface IState {
 };
 
-class Form extends Component<IProps, IState> {
+class SignInEmailForm extends Component<IProps, IState> {
   constructor(props: any) {
     super(props);
     this.state = { errors: [] };
@@ -58,7 +58,7 @@ class Form extends Component<IProps, IState> {
     // Copy data injected into Props to local variables.
     const errors = this.props.errors <= 0 ? null : renderErrors(this.props.errors);
     const signingIn = this.props.signingIn ? <Text style={styles.error}>Logging in...</Text> : <Text />;
-    console.log("rendering signingIn: " + this.props.signingIn)
+    console.log("rendering signingIn: " + this.props.signingIn);
     return (
       <View style={styles.container}>
         <Text>Email:</Text>
@@ -95,8 +95,8 @@ const validate = (values: any) => {
   if (!values.password) {
     errors.password = "Required";
   }
-  if (values.password && values.password.length < 8) {
-    //errors.password = 'Password must be 8 charaters long.';
+  if (values.password && values.password.length < 3) {
+    errors.password = "Password must be 3 charaters long.";
   }
   return errors;
 };
@@ -168,4 +168,4 @@ const styles = StyleSheet.create({
 export default reduxForm({
   form: "login", // unique identifier
   validate, // validation function
-})(Form);
+})(SignInEmailForm);

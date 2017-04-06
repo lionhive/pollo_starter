@@ -4,27 +4,25 @@ import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
 import SignInForm from "./form";
 
-interface IProps extends React.Props<Authentication> {
+interface IProps extends React.Props<SignInEmail> {
   actions: any;
-  authenticateUserMutation: Function;
-  signingIn: boolean,
+  signingIn: boolean;
 };
 interface IState {
-  errors: any,
+  errors: any;
 };
 
-class Authentication extends Component<IProps, IState> {
+class SignInEmail extends Component<IProps, IState> {
   constructor(props: any) {
     super(props);
     this.state = { errors: [] };
   }
 
+  // values contains 'name' and 'password' from a redux-form.
   public handleSubmit(values: any) {
-    this.props.actions.signInFlow(values)
+    this.props.actions.signInEmail(values)
       .then((result: any) => {
         if (result.token) {
-          console.log("Log in complete");
-          console.log(result);
           Actions.login_scene();
         } else {
           this.setState({
@@ -32,7 +30,6 @@ class Authentication extends Component<IProps, IState> {
           });
         }
       }).catch((error: any) => {
-        console.log(error)
         this.setState({
           errors: [error],
         });
@@ -40,8 +37,6 @@ class Authentication extends Component<IProps, IState> {
   }
 
   public render() {
-    console.log("printing container props");
-    console.log(this.props);
     return (
       <SignInForm
         onSubmit={this.handleSubmit.bind(this)}
@@ -54,4 +49,4 @@ class Authentication extends Component<IProps, IState> {
 
 // Inject redux actions and gql queries.
 import Connector from "./connector.js";
-export default Connector(Authentication);
+export default Connector(SignInEmail);
