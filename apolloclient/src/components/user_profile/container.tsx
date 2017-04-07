@@ -36,7 +36,7 @@ class UserProfile extends Component<IProps, IState> {
         <Text style={{ textAlign: "center" }}>Name: {user.name}</Text>
         <Text style={{ textAlign: "center" }}>Username: {user.username}</Text>
         <Text style={{ textAlign: "center" }}>ID: {user._id}</Text>
-        <Text onPress={() => Actions.sign_in_email_scene()}>
+        <Text onPress={() => Actions.login_scene()}>
           Navigate to Home
         </Text>
       </View>

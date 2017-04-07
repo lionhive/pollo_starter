@@ -20,10 +20,11 @@ class SignInEmail extends Component<IProps, IState> {
 
   // values contains 'name' and 'password' from a redux-form.
   public handleSubmit(values: any) {
+    console.log("sign_in_email handleSubmit");
     this.props.actions.signInEmail(values)
       .then((result: any) => {
         if (result.token) {
-          Actions.login_scene();
+          Actions.profile_scene();
         } else {
           this.setState({
             errors: [result.message],
