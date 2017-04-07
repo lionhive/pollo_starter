@@ -4,7 +4,7 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
 import { Actions } from "react-native-router-flux";
-import RestoreSession from "../components/auth/restore_session";
+import RestoreSession from "../components/restore_session/container";
 
 import styles from "../styles/blank";
 
