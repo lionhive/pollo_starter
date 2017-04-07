@@ -1,5 +1,5 @@
 "use strict";
-import { clearToken } from "../../../utils/auth//utils_local_storage";
+import { clearToken } from "../../../utils/local_storage";
 import * as types2 from "../sign_in_email/action_types";
 import * as types from "./action_types";
 
@@ -14,7 +14,7 @@ export function signingOut(bool: boolean) {
 export function signOutAction() {
   return {
     token: "",
-    type: types2.AUTH_SIGNIN,
+    type: types2.AUTH_TOKEN_SET,
   };
 };
 

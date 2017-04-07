@@ -2,7 +2,7 @@
 import { AsyncStorage } from "react-native";
 
 // Key used in local storage.
-const storageKey:string = "auth_token";
+const storageKey:string = "auth.token";
 
 // Tries to load token from local storage.
 async function tryLoadToken() {

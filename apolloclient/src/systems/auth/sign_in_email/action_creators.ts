@@ -1,5 +1,6 @@
 "use strict";
-import { clearToken, saveToken } from "../../../utils/auth//utils_local_storage";
+import { clearToken, saveToken } from "../../../utils/local_storage";
+import * as types_token from "../token/action_types";
 import * as types from "./action_types";
 
 export function signingIn(bool: boolean) {
@@ -12,7 +13,7 @@ export function signingIn(bool: boolean) {
 export function signIn(token: string) {
   saveToken(token);
   return {
-    type: types.AUTH_SIGNIN,
+    type: types_token.AUTH_TOKEN_SET,
     token,
   };
 };
@@ -22,11 +23,6 @@ export function signInError(error: string) {
     type: types.AUTH_SIGN_IN_ERROR,
     error,
   };
-};
-// Remove user  authentication.
-export function signOut() {
-  clearToken();
-  return { type: types.AUTH_SIGNOUT };
 };
 
 import * as server from "./server";

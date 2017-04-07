@@ -10,7 +10,7 @@ interface IProps extends React.Props<RestoreSession> {
   actions: any;
   hasErrored: any;
   isLoading: any;
-  auth_token: string;
+  token: string;
 };
 interface IState {
 };
@@ -33,7 +33,7 @@ class RestoreSession extends Component<IProps, IState> {
       return <Text>Loading…</Text>;
     }
     return (
-      <View><Text>Token loaded: {this.props.auth_token}</Text></View>
+      <View><Text>Token loaded: {this.props.token}</Text></View>
     );
   }
 };

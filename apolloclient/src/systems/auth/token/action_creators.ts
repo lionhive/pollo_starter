@@ -1,8 +1,7 @@
 "use strict";
 import { Actions } from "react-native-router-flux";
 import thunk from "redux-thunk";
-import * as signin_types from "../../systems/auth/sign_in_email/action_types";
-import { tryLoadToken } from "../../utils/auth//utils_local_storage";
+import { tryLoadToken } from "../../../utils/local_storage";
 import * as types from "./action_types.js";
 
 export function tokenHasErrored(bool: boolean = false) {
@@ -19,14 +18,15 @@ export function tokenIsLoading(bool: boolean = false) {
   };
 }
 
-export function authSignIn(token: string) {
+export function tokenSet(token: string) {
   return {
-    type: signin_types.AUTH_SIGNIN,
+    type: types.AUTH_TOKEN_SET,
     token,
   };
 }
 
 // Tries to load auth token from local storage and initializes redux store.
+// TODO(tvykruta): Create separate reducers for handling local storage of token.
 export function actionLoadLocalAuthToken() {
   console.log("waiting on token loading..");
   return (dispatch: any) => {
@@ -40,7 +40,7 @@ export function actionLoadLocalAuthToken() {
         dispatch(tokenIsLoading(false));
         return token;
       })
-      .then((token) => dispatch(authSignIn(token)))
+      .then((token) => dispatch(tokenSet(token)))
       .then(() => Actions.profile_scene())
       .catch(() => dispatch(tokenHasErrored(true)));
   };

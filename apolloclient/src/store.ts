@@ -36,7 +36,7 @@ networkInterface.use([{
     if (!req.options.headers) {
       req.options.headers = {};
     }
-    const token = store.getState().auth.auth_token;
+    const token = store.getState().auth.token;
     if (token) {
       console.log("issuing network request with header."); ;
       req.options.headers.authorization = "JWT " + token;

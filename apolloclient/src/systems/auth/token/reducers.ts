@@ -1,6 +1,6 @@
 "use strict";
-import createReducer from "../../lib/createReducer";
-import * as signin_types from "../../systems/auth/sign_in_email/action_types";
+import createReducer from "../../../lib/createReducer";
+import * as signin_types from "../../../systems/auth/sign_in_email/action_types";
 import * as types from "./action_types";
 
 export function tokenHasErrored(state = false, action: any) {
@@ -21,9 +21,10 @@ export function tokenIsLoading(state = false, action: any) {
   }
 }
 
-export function auth_token(state = "", action: any) {
+// Sets token to redux store to a value or sets to null.
+export function token(state = "", action: any) {
   switch (action.type) {
-    case signin_types.AUTH_SIGNIN:
+    case signin_types.AUTH_TOKEN_SET:
       return action.token;
     default:
       return state;
