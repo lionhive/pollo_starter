@@ -11,7 +11,7 @@ import {
   View,
 } from "react-native";
 import { Field, reduxForm } from "redux-form";
-import styles from "../login/styles";
+import styles from "../sign_in_email_fancy/styles";
 
 const lockIcon = require("../../../resources/components/login/images/lock.png");
 const personIcon = require("../../../resources/components/login/images/person.png");

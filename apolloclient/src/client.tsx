@@ -5,13 +5,13 @@ import { ApolloProvider } from "react-apollo";
 import { Actions, Router, Scene } from "react-native-router-flux";
 import { client, store } from "./store.js";
 
-import SignInEmail from "./components/sign_in_email/container";
+import SignInEmail from "./components/sign_in_email_fancy/container";
 import User from "./components/user/container";
 import UserProfile from "./components/user_profile/container";
 import President from "./container/president";
 import Blank from "./scenes/blank";
 import Loading from "./scenes/loading";
-import Login from "./scenes/login";
+import Login from "./scenes/sign_in";
 
 const scenes = Actions.create(
   <Scene key="root">

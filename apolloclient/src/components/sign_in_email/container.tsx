@@ -4,7 +4,7 @@ import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
 import SignInForm from "./form";
 
-interface IProps extends React.Props<SignInEmail> {
+interface IProps extends React.Props<SignInEmailTest> {
   actions: any;
   signingIn: boolean;
 };
@@ -12,7 +12,7 @@ interface IState {
   errors: any;
 };
 
-class SignInEmail extends Component<IProps, IState> {
+class SignInEmailTest extends Component<IProps, IState> {
   constructor(props: any) {
     super(props);
     this.state = { errors: [] };
@@ -50,4 +50,4 @@ class SignInEmail extends Component<IProps, IState> {
 
 // Inject redux actions and gql queries.
 import Connector from "./connector.js";
-export default Connector(SignInEmail);
+export default Connector(SignInEmailTest);
