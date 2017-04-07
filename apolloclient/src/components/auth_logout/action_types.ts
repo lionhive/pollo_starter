@@ -1,3 +1,0 @@
-"use strict";
-export const AUTH_LOAD_LOCAL_TOKEN = "AUTH_LOAD_LOCAL_TOKEN";
-export const AUTH_LOAD_LOCAL_SUCCESS = "AUTH_LOAD_LOCAL_SUCCESS";

@@ -26,6 +26,7 @@ class RestoreSession extends Component<IProps, IState> {
 
   public render() {
     if (this.props.hasErrored) {
+      Actions.login_scene();
       return <Text>Sorry! There was an error loading the items</Text>;
     }
     if (this.props.isLoading) {

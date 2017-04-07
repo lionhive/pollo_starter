@@ -6,6 +6,7 @@ import { Actions } from "react-native-router-flux";
 import styles from "./styles.js";
 
 interface IProps {
+  actions: any;
   data: any;
 };
 interface IState { };
@@ -29,6 +30,8 @@ class UserProfile extends Component<IProps, IState> {
     if (!this.props.data.user_authenticated) {
       return (<Text style={{ marginTop: 64 }}>User not found.</Text>);
     }
+    console.log("dump props");
+    console.log(this.props);
     const user = this.props.data.user_authenticated;
     return (
       <View style={styles.container}>
@@ -39,6 +42,10 @@ class UserProfile extends Component<IProps, IState> {
         <Text onPress={() => Actions.login_scene()}>
           Navigate to Home
         </Text>
+        <Text onPress={() => this.props.actions.signOut().then(Actions.login_scene())}>
+          Sign Out User
+        </Text>
+        
       </View>
     );
   }
