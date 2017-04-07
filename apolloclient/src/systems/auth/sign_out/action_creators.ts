@@ -1,20 +1,19 @@
 "use strict";
 import { clearToken } from "../../../utils/local_storage";
-import * as types2 from "../sign_in_email/action_types";
+import * as types_token from "../token/action_types";
 import * as types from "./action_types";
 
 export function signingOut(bool: boolean) {
   return {
-    type: types.AUTH_SIGNING_OUT,
+    type: types.SIGN_OUT,
     signingOut: bool,
   };
 };
 
-// TODO: Rename AUTH_SIGNIN to SETTOKEN.
 export function signOutAction() {
   return {
     token: "",
-    type: types2.AUTH_TOKEN_SET,
+    type: types_token.AUTH_TOKEN_SET,
   };
 };
 

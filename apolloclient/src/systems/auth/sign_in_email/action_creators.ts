@@ -5,7 +5,7 @@ import * as types from "./action_types";
 
 export function signingIn(bool: boolean) {
   return {
-    type: types.AUTH_SIGNING_IN,
+    type: types.SIGN_IN,
     signingIn: bool,
   };
 };
@@ -20,7 +20,7 @@ export function signIn(token: string) {
 
 export function signInError(error: string) {
   return {
-    type: types.AUTH_SIGN_IN_ERROR,
+    type: types.SIGN_IN_ERROR,
     error,
   };
 };
