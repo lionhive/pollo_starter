@@ -9,13 +9,6 @@ function mapStateToProps(state: any) {
   return { signingIn: state.authentication.signingIn };
 }
 
-// Import asynchronous email sign in flow. One function only!
-import { signInEmail } from "../../systems/auth/sign_in_email//action_creators";
-function mapDispatchToProps(dispatch: any) {
-  let actionCreatorsMap = { signInEmail } as ActionCreatorsMapObject;
-  return { actions: bindActionCreators(actionCreatorsMap, dispatch) };
-}
-
 export default compose(
-  connect(mapStateToProps, mapDispatchToProps),
+  connect(mapStateToProps),
 );

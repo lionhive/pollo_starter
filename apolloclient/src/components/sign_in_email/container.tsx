@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
-import SignInForm from "./form";
+import SignInForm from "../sign_in_email/form";
 
 interface IProps extends React.Props<SignInEmailTest> {
   actions: any;
