@@ -68,6 +68,8 @@ class SignUpForm extends Component<IProps, IState> {
 
     return (
       <View style={styles.container} >
+        <Text>Name:</Text>
+        <Field name="name" placeholder="name" component={renderInput} />
         <Text>Username:</Text>
         <Field name="username" placeholder="username" component={renderInput} />
         <Text>Email::</Text>

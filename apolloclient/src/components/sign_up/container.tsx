@@ -23,7 +23,21 @@ class SignUp extends Component<IProps, IState> {
 
   // values contains 'name' and 'password' from a redux-form.
   public handleSubmit(values: any) {
-    console.log("sign_up handleSubmit");
+    this.props.actions.signUpFlow(values).then((result: any) => {
+      console.log("**** result ***");
+      console.log(result);
+      if (result.data.authenticate_user.token) {
+        Actions.profile_scene();
+      } else {
+        this.setState({
+          errors: [result.message],
+        });
+      }
+    }).catch((error: any) => {
+      this.setState({
+        errors: [error],
+      });
+    });
   }
 
   public render() {
