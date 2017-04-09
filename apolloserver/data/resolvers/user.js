@@ -1,4 +1,4 @@
-const {createJwtToke, decodeJwtToken} = require('../../authentication/authentication');
+const { createJwtToken, decodeJwtToken } = require('../../authentication/authentication');
 
 // Defines access functions for GraphQL schemas.
 const resolveFunctions = {
@@ -9,7 +9,7 @@ const resolveFunctions = {
       return user.find(username, name);
     },
     // Requires token to be set.
-    user_authenticated(_, {}, ctx) {
+    user_authenticated(_, { }, ctx) {
       const user = new ctx.constructor.User();
       console.log(ctx.token);
       if (!ctx.token) {
@@ -19,7 +19,7 @@ const resolveFunctions = {
       console.log(decoded);
       return user.find(decoded.id);
     },
-    users(_, {}, ctx) {
+    users(_, { }, ctx) {
       const users = new ctx.constructor.User();
       return users.all();
     },
@@ -29,11 +29,18 @@ const resolveFunctions = {
     },
   },
   Mutation: {
-    add_user(_, { username, name, password, extension }, ctx) {
-      const user = new ctx.constructor.User();
-      return user.add(username, name, password, extension);
+    add_user(_, variables, ctx) {
+      return new Promise((resolve, reject) => {
+        const db = new ctx.constructor.User();
+        db.add(variables).then((user) => {
+          return resolve(user);
+        }).catch((error) => {
+          console.log("fail db.add user: ", error);
+          return reject(error);
+        });
+      })
     },
-    add_user_extension(_, {username, key, val_int, val_string }, ctx) {
+    add_user_extension(_, { username, key, val_int, val_string }, ctx) {
       const user = new ctx.constructor.User();
       extension = {};
       extension.key = key;
