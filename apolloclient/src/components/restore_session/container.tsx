@@ -7,7 +7,9 @@ import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
 
 interface IProps extends React.Props<RestoreSession> {
-  actions: any;
+  actions: {
+    tokenTryLoadFromLocalStorage: any;
+  }
   hasErrored: any;
   isLoading: any;
   token: string;
@@ -21,12 +23,20 @@ class RestoreSession extends Component<IProps, IState> {
   }
 
   public componentDidMount() {
-    this.props.actions.actionLoadLocalAuthToken();
+    this.props.actions.tokenTryLoadFromLocalStorage()
+      .then((token: any) => {
+        console.log("SUccessful token restore");
+        console.log(token);
+        Actions.profile_scene();
+      })
+      .catch((error: any) => {
+        Actions.login_scene();
+        console.log("login_scene navigation due to error");
+      });
   }
 
   public render() {
     if (this.props.hasErrored) {
-      Actions.login_scene();
       return <Text>Sorry! There was an error loading the items</Text>;
     }
     if (this.props.isLoading) {

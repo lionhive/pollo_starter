@@ -46,11 +46,11 @@ export function signUpFlow(values: any) {
         }
         return response;
       })
+      // TODO(Tvykruta): invalidate user profile, force refetch.
       .then((response: any) => {
         dispatch(signingUp(false));
         return response;
       })
-      // TODO(tvykruta): Refresh user name for rendering in Profile page.
       .catch((err: any) => {
         console.log("Sign up error!" + err);
         return err;

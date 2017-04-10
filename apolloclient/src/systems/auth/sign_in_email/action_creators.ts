@@ -1,5 +1,5 @@
 "use strict";
-import { clearToken, saveToken } from "../../../utils/local_storage";
+import { saveToken } from "../../../utils/local_storage";
 import * as types_token from "../token/action_types";
 import * as types from "./action_types";
 
@@ -30,7 +30,7 @@ import * as server from "./server";
 export function signInEmail(values: any) {
   return (dispatch: any, getState: any, client: any) => {
     dispatch(signingIn(true));
-    return server.SignIn(client, values)
+    return server.signIn(client, values)
       .then((response: any) => {
         if (response.data.authenticate_user.token) {
           dispatch(signIn(response.data.authenticate_user.token));

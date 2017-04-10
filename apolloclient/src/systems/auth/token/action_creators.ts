@@ -1,6 +1,4 @@
 "use strict";
-import { Actions } from "react-native-router-flux";
-import thunk from "redux-thunk";
 import { tryLoadToken } from "../../../utils/local_storage";
 import * as types from "./action_types.js";
 
@@ -27,11 +25,11 @@ export function tokenSet(token: string) {
 
 // Tries to load auth token from local storage and initializes redux store.
 // TODO(tvykruta): Create separate reducers for handling local storage of token.
-export function actionLoadLocalAuthToken() {
-  console.log("waiting on token loading..");
-  return (dispatch: any) => {
+export function tokenTryLoadFromLocalStorage() {
+  console.log("Trying to load token from local storage..");
+  return (dispatch: any, getState: any, client: any) => {
     dispatch(tokenIsLoading(true));
-    tryLoadToken()
+    return tryLoadToken()
       .then((token) => {
         if (!token) {
           throw Error("Token failed to load.");
@@ -40,8 +38,13 @@ export function actionLoadLocalAuthToken() {
         dispatch(tokenIsLoading(false));
         return token;
       })
-      .then((token) => dispatch(tokenSet(token)))
-      .then(() => Actions.profile_scene())
-      .catch(() => dispatch(tokenHasErrored(true)));
+      .then((token) => {
+        dispatch(tokenSet(token));
+        return token;
+      })
+      .catch((error) => {
+        dispatch(tokenHasErrored(true));
+        return Promise.reject(error);
+      });
   };
 }

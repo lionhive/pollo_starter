@@ -16,7 +16,7 @@ function mapStateToProps(state: any) {
 
 //
 // Map Apollo GraphQL queries and mutations
-//
+// 
 import {userQuery} from "./queries.js";
 
 // Import asynchronous email sign in flow. One function only!

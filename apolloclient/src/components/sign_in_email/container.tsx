@@ -4,7 +4,7 @@ import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
 import SignInForm from "../sign_in_email/form";
 
-interface IProps extends React.Props<SignInEmailTest> {
+interface IProps extends React.Props<SignInEmail> {
   actions: any;
   signingIn: boolean;
 };
@@ -12,7 +12,7 @@ interface IState {
   errors: any;
 };
 
-class SignInEmailTest extends Component<IProps, IState> {
+class SignInEmail extends Component<IProps, IState> {
   constructor(props: any) {
     super(props);
     this.state = { errors: [] };
@@ -20,7 +20,6 @@ class SignInEmailTest extends Component<IProps, IState> {
 
   // values contains 'name' and 'password' from a redux-form.
   public handleSubmit(values: any) {
-    console.log("sign_in_email handleSubmit");
     this.props.actions.signInEmail(values)
       .then((result: any) => {
         if (result.token) {
@@ -30,7 +29,8 @@ class SignInEmailTest extends Component<IProps, IState> {
             errors: [result.message],
           });
         }
-      }).catch((error: any) => {
+      })
+      .catch((error: any) => {
         this.setState({
           errors: [error],
         });
@@ -50,4 +50,4 @@ class SignInEmailTest extends Component<IProps, IState> {
 
 // Inject redux actions and gql queries.
 import Connector from "./connector.js";
-export default Connector(SignInEmailTest);
+export default Connector(SignInEmail);

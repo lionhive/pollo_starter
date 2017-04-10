@@ -6,6 +6,7 @@ const addUserAndAuthenticateMutation = gql`
   mutation AddUserMutation($username: String!, $name: String!, $password: String!) {
     add_user(username:$username, name:$name, password:$password) {
       name
+      username
     }
     authenticate_user(username:$username, password:$password) {
       token
