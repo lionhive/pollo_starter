@@ -4,9 +4,9 @@ const { createJwtToken, decodeJwtToken } = require('../../authentication/authent
 const resolveFunctions = {
   RootQuery: {
     // Users
-    user(_, { username, name }, ctx) {
+    user(_, variables, ctx) {
       const user = new ctx.constructor.User();
-      return user.find(username, name);
+      return user.find(variables);
     },
     // Requires token to be set.
     user_authenticated(_, { }, ctx) {
@@ -23,9 +23,9 @@ const resolveFunctions = {
       const users = new ctx.constructor.User();
       return users.all();
     },
-    user_extension(_, { username, key }, ctx) {
+    user_extension(_, variables, ctx) {
       const user = new ctx.constructor.User();
-      return user.extension(username, key);
+      return user.extension(variables);
     },
   },
   Mutation: {
@@ -40,14 +40,12 @@ const resolveFunctions = {
         });
       })
     },
-    add_user_extension(_, { username, key, val_int, val_string }, ctx) {
+    add_user_extension(_, variables, ctx) {
       const user = new ctx.constructor.User();
       extension = {};
-      extension.key = key;
-      extension.val_int = val_int;
-      extension.val_string = val_string;
+      Object.assign(extension, variables)
       user.extension = extension;
-      return user.addExtension(username, extension);
+      return user.addExtension(variables.username, extension);
     },
   },
 };

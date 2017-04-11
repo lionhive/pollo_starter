@@ -2,19 +2,30 @@
 const resolveFunctions = {
   RootQuery: {
     // Users
-    service(_, { name }, ctx) {
+    service(_, variables, ctx) {
       const item = new ctx.constructor.Service();
-      return item.find(name);
+      return item.find(variables)
+        .then((item) => {
+          if (!item) throw("Service not found");
+          return item;})
+        .catch((error) => Promise.reject(error));
     },
-    services(_, {}, ctx) {
+    services(_, { }, ctx) {
       const item = new ctx.constructor.Service();
       return item.all();
     },
   },
   Mutation: {
-    add_service(_, { name, category, provider, cost }, ctx) {
-      const item = new ctx.constructor.Service();
-      return item.add(name, category, provider, cost);
+    add_service(_, variables, ctx) {
+      return new Promise((resolve, reject) => {
+        const db = new ctx.constructor.Service();
+        db.add(variables).then((item) => {
+          return resolve(item);
+        }).catch((error) => {
+          console.log("fail db.add: ", error);
+          return reject(error);
+        });
+      })
     },
   },
 };

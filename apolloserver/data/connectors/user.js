@@ -10,13 +10,13 @@ class User {
       });
       return result;
     };
-    this.find = (username, name) => {
+    this.find = (username) => {
       const result = db.findOne({ username }, (error, data) => {
         return data;
       });
       return result;
     };
-    this.extension = (username, key) => {
+    this.extension = ({ username, key }) => {
       const user = db.find({ username }, (error, data) => {
         return data;
       });
@@ -31,7 +31,7 @@ class User {
       // Return promise, let caller handle promise, do not handle here.
       return user.save();
     };
-    this.addExtension = (username, extension) => {
+    this.addExtension = ({ username, extension }) => {
       const user = db.update({ username }, {
         $push:
         {

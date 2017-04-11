@@ -2,13 +2,11 @@ const db = require('../models/service');
 
 class Service {
   constructor() {
-    this.find = (name) => {
-      const item = db.find({ name }, (error, data) => {
-        return data;
-      });
-      return item;
+    this.find = ({ name }) => {
+      console.log(name);
+      return db.findOne({ name });
     };
-    
+
     this.all = () => {
       const items = db.find({}, (error, data) => {
         return data;
@@ -16,14 +14,9 @@ class Service {
       return items;
     };
     // Mutators.
-    this.add = (name, provider, category, cost) => {
-      console.log("adding", name, provider);
-      const item = new db({name, provider, category, cost});
-      return item.save((err, item) => {
-          console.log("error: ", err);
-          console.log('added ', item);
-          return item;
-        });
+    this.add = (variables) => {
+      const item = new db(Object.assign({}, variables));
+      return item.save();
     };
   }
 }
