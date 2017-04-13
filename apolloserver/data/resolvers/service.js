@@ -7,7 +7,8 @@ const resolveFunctions = {
       return item.find(variables)
         .then((item) => {
           if (!item) throw("Service not found");
-          return item;})
+          return item;
+        })
         .catch((error) => Promise.reject(error));
     },
     services(_, { }, ctx) {

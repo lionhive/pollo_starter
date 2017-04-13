@@ -25,13 +25,10 @@ class RestoreSession extends Component<IProps, IState> {
   public componentDidMount() {
     this.props.actions.tokenTryLoadFromLocalStorage()
       .then((token: any) => {
-        console.log("SUccessful token restore");
-        console.log(token);
         Actions.profile_scene();
       })
       .catch((error: any) => {
         Actions.login_scene();
-        console.log("login_scene navigation due to error");
       });
   }
 

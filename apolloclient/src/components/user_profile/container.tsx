@@ -42,10 +42,14 @@ class UserProfile extends Component<IProps, IState> {
         <Text onPress={() => Actions.login_scene()}>
           Navigate to Home
         </Text>
-        <Text onPress={() => this.props.actions.signOut().then(Actions.login_scene())}>
+        <Text onPress={() => {
+          this.props.actions.signOut()
+            //.then(this.props.data.refetch())
+            .then(Actions.login_scene());
+        }}>
           Sign Out User
         </Text>
-        
+
       </View>
     );
   }
