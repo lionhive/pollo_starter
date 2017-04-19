@@ -25,5 +25,5 @@ export default StyleSheet.create({
   },
   flexed: {
     flex: 1,
-  }
+  },
 });

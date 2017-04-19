@@ -34,6 +34,8 @@ export function signUpError(error: string) {
 
 import * as server from "./server";
 
+// TODO(tvykruta): The catch() statement triggers, but this function still returns
+// then() instead of catch() in sign_up/container.tsx. FIgure out why.
 export function signUpFlow(values: any) {
   return (dispatch: any, getState: any, client: any) => {
     dispatch(signingUp(true));
@@ -42,18 +44,22 @@ export function signUpFlow(values: any) {
         if (response.data.authenticate_user.token) {
           dispatch(signIn(response.data.authenticate_user.token));
         } else {
-          dispatch(signInError(response.data.authenticate_user.token));
+          dispatch(signInError("Token not foundl"));
         }
+        console.log("signUpFlow48 response:" + response);
         return response;
       })
       // TODO(Tvykruta): invalidate user profile, force refetch.
       .then((response: any) => {
+        console.log("signUpFlow54 response:" + response);
         dispatch(signingUp(false));
         return response;
       })
       .catch((err: any) => {
         console.log("Sign up error!" + err);
-        return err;
+        dispatch(signInError(err));
+        dispatch(signingUp(false));
+        return Promise.reject(err);
       });
   };
 }

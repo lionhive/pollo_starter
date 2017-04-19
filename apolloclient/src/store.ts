@@ -20,7 +20,7 @@ const reducers = combineReducers({
 });
 // Inject enhancers such as logging tools.
 const enhancer = compose(
-  applyMiddleware(client.middleware(), redux_thunk.withExtraArgument(client), ...redux_logger),
+  applyMiddleware(client.middleware(), redux_thunk.withExtraArgument(client)),  // , ...redux_logger),
   // If you are using the devToolsExtension, you can add it here also
   // (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
 );

@@ -4,7 +4,9 @@ import { View } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
 
-import Form from "./form";
+// import Form from "./form";
+let Form = require("./form-clean.js").default;
+// import Form from "./form-clean";
 import styles from "./styles";
 
 interface IProps extends React.Props<SignUp> {
@@ -23,29 +25,34 @@ class SignUp extends Component<IProps, IState> {
 
   // values contains 'name' and 'password' from a redux-form.
   public handleSubmit(values: any) {
+    console.log("container.tsx28: hsandleSubmit called");
+    console.log(values);
     this.props.actions.signUpFlow(values).then((result: any) => {
-      console.log("**** result ***");
+      console.log("**** sign up succeeded, result: ***");
       console.log(result);
-      if (result.data.authenticate_user.token) {
+      if (result.data && result.data.authenticate_user.token) {
         Actions.profile_scene();
       } else {
+        console.log("This error should never tirgger!");
         this.setState({
           errors: [result.message],
         });
       }
     }).catch((error: any) => {
+      console.log("caught error: " + error);
+      console.log(error);
       this.setState({
-        errors: [error],
+        errors: [error.message],
       });
     });
   }
 
   public render() {
-    console.log("rendering signUp");
     return (
       <View style={styles.container}>
         <Form
           onSubmit={this.handleSubmit.bind(this)}
+          submitting={this.props.signingIn}
           errors={this.state.errors}
           signingIn={this.props.signingIn}
         />
