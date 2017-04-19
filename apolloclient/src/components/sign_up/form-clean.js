@@ -1,3 +1,4 @@
+// Example of nicelyistyled form.  See form.tsx for a simpler variation.
 import React, { Component } from 'react'
 import { reduxForm } from 'redux-form'
 import {
@@ -67,7 +68,8 @@ class SignUpForm extends Component {
     )
   }
 }
-// icons:<Button icon="md-checkmark" iconPlacement="right" onPress={handleSubmit(onSubmit)} submitting={submitting}>Save</Button>
+// To add icon use:
+// <Button icon="md-checkmark" iconPlacement="right" onPress={handleSubmit(onSubmit)} submitting={submitting}>Save</Button>
 
 export default reduxForm({
   form: "login", // unique identifier

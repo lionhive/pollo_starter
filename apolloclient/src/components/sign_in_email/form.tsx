@@ -69,9 +69,8 @@ class SignInEmailForm extends Component<IProps, IState> {
     // Copy data injected into Props to local variables.
     const errors = this.props.errors <= 0 ? null : renderErrors(this.props.errors);
     const signingIn = this.props.signingIn ? <Text style={styles2.error}>Logging in...</Text> : <Text />;
-    //console.log("rendering signingIn: " + this.props.signingIn);
-    //console.log("rendering errors:" );
-    console.log(errors);
+    console.log("rendering signingIn: " + this.props.signingIn);
+
     return (
       <View style={styles.wrapper} >
         <View style={styles.inputWrap}>
@@ -99,10 +98,12 @@ class SignInEmailForm extends Component<IProps, IState> {
             <Text style={styles.buttonText}>Sign In</Text>
           </View>
         </TouchableOpacity>
-        <View>
-          {errors}
-          {signingIn}
-        </View>
+        <TouchableOpacity activeOpacity={0.5}>
+          <View>
+            {errors}
+            {signingIn}
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }

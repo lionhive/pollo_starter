@@ -1,6 +1,7 @@
 "use strict";
 // React-redux form example with validation and normalization.
-// In the future switch to react-redux-clean-form, comess with nice styling but is broken now.
+// See form-clean.js for example using react-redux-clean-form.
+
 import React, { Component } from "react";
 import {
   Image,
