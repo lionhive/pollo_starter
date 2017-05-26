@@ -6,29 +6,29 @@ import { Text, View } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { connect } from "react-redux";
 
-interface IProps extends React.Props<RestoreSession> {
-  actions: {
-    tokenTryLoadFromLocalStorage: any;
-  }
-  hasErrored: any;
-  isLoading: any;
-  token: string;
+interface IProps {
+  actions?: any;
+  rootNavigation: any;
+  hasErrored?: any;
+  isLoading?: any;
+  token?: string;
 };
 interface IState {
 };
 
 class RestoreSession extends Component<IProps, IState> {
-  constructor(props: any) {
-    super(props);
+  constructor() {
+    super();
   }
 
   public componentDidMount() {
     this.props.actions.tokenTryLoadFromLocalStorage()
       .then((token: any) => {
-        Actions.profile_scene();
+        console.log("Loaded token. props is", this.props);
+        this.props.rootNavigation.navigate("UserProfile");
       })
       .catch((error: any) => {
-        Actions.login_scene();
+        this.props.rootNavigation.navigate("SignInEmail");
       });
   }
 
@@ -47,4 +47,4 @@ class RestoreSession extends Component<IProps, IState> {
 
 // Inject redux actions and gql queries.
 import Connector from "./connector.js";
-export default Connector(RestoreSession);
+export default Connector(RestoreSession) as React.ComponentClass<IProps>;

@@ -12,11 +12,10 @@ import * as types from "./action_types";
   write/broadcast token
   signUp: false
   resolve()
-  
+
   ...component...
   route -> new route
 */
-
 
 export function signingUp(bool: boolean) {
   return {

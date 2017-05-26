@@ -10,6 +10,7 @@ import styles from "./styles";
 
 interface IProps extends React.Props<SignUp> {
   actions: any;
+  navigation: any;
   signingIn: boolean;
 };
 interface IState {
@@ -28,7 +29,7 @@ class SignUp extends Component<IProps, IState> {
       console.log("**** sign up succeeded, result: ***");
       console.log(result);
       if (result.data && result.data.authenticate_user.token) {
-        Actions.profile_scene();
+        this.props.navigation.navigate("UserProfile");
       } else {
         console.log("This error should never tirgger!");
         throw("This error should never tirgger!");

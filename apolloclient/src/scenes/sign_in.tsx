@@ -4,9 +4,12 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import SignInSceneComponent from "../components/sign_in_email_fancy/component";
 
-class SignInScene extends Component<void, void> {
+interface IProps {
+  navigation: any;
+};
+class SignInScene extends Component<IProps, void> {
   public render() {
-    return (<SignInSceneComponent />);
+    return (<SignInSceneComponent rootNavigation={this.props.navigation}/>);
   };
 }
 

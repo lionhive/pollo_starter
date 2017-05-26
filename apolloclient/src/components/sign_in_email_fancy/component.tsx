@@ -15,7 +15,10 @@ const background = require("../../../resources/components/login/images/backgroun
 const bear = require("../../../resources/components/login/images/bear.png");
 
 import SignInForm from "../sign_in_email/container";
-interface IProps { };
+
+interface IProps {
+  rootNavigation: any;
+};
 interface IState { };
 
 class SignInEmailComponent extends Component<IProps, IState> {
@@ -41,11 +44,13 @@ class SignInEmailComponent extends Component<IProps, IState> {
             </View>
           </View>
         </View>
-        <SignInForm />
+        <SignInForm rootNavigation={ this.props.rootNavigation }/>
         <TouchableOpacity activeOpacity={0.5}>
           <View>
             <Text style={styles.forgotPasswordText} >Forgot Password</Text>
-            <Text style={styles.forgotPasswordText} onPress={() => Actions.sign_up_scene()}>Create New Account</Text>
+            <Text style={styles.forgotPasswordText} onPress={() =>
+              this.props.rootNavigation.navigate("SignUpEmail")}
+              >Create New Account</Text>
           </View>
         </TouchableOpacity>
         <View style={styles.container} />

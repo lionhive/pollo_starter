@@ -10,17 +10,29 @@ import redux_logger from "./redux_logger";
 const networkInterface = createNetworkInterface({ uri: "http://localhost:8080/graphql" });
 const client = new ApolloClient({ networkInterface });
 
+console.log("before nav import");
+import navReducer from "./systems/navigation/reducers";
+if (navReducer) {
+  console.log("navreducer is ", navReducer);
+} else {
+  console.log("navreducer is null");
+}
+
+console.log("after nav import");
+
 // Set up apollo reducer
 import { reducer as formReducer } from "redux-form";
 
+console.log("formReducer is ", formReducer);
 const reducers = combineReducers({
+  nav: navReducer,
   apollo: client.reducer(),
   ...all_reducers,
   form: formReducer,
 });
 // Inject enhancers such as logging tools.
 const enhancer = compose(
-  applyMiddleware(client.middleware(), redux_thunk.withExtraArgument(client)),  // , ...redux_logger),
+  applyMiddleware(client.middleware(), redux_thunk.withExtraArgument(client), ...redux_logger),
   // If you are using the devToolsExtension, you can add it here also
   // (typeof window.__REDUX_DEVTOOLS_EXTENSION__ !== 'undefined') ? window.__REDUX_DEVTOOLS_EXTENSION__() : f => f,
 );

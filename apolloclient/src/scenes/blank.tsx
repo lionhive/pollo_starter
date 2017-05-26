@@ -9,7 +9,9 @@ import UserProfile from "../components/user_profile/container";
 import UserListContainer from "../components/userList/container.js";
 import styles from "../styles/blank";
 
-interface IProps { };
+interface IProps {
+  navigation: any;
+ };
 interface IState { };
 
 class Blank extends Component<IProps, IState> {
@@ -23,14 +25,14 @@ class Blank extends Component<IProps, IState> {
     return (
       <View style={styles.container}>
         <Text style={{ textAlign: "center" }}>Blank Component</Text>
-        <Text onPress={() => Actions.profile_scene()}>
+        <Text onPress={() => this.props.navigation.navigate("UserProfile")}>
           Navigate to Profile Screen
         </Text>
 
-        <Text onPress={() => Actions.president_scene()}>
+        <Text onPress={() => this.props.navigation.navigate("President")}>
           Navigate to President Screen
         </Text>
-        <Text onPress={() => Actions.sign_in_email_scene()}>
+        <Text onPress={() => this.props.navigation.navigate("SignInEmail")}>
           Navigate to Login Screen
         </Text>
       </View>

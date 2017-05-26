@@ -8,7 +8,7 @@ function mapStateToProps(state: any) {
     hasErrored: state.auth.tokenHasErrored,
     isLoading: state.auth.tokenIsLoading,
     token: state.auth.token,
-  }
+  };
 };
 
 import { tokenTryLoadFromLocalStorage } from "../../systems/auth/token/action_creators";

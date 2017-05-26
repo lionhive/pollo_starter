@@ -8,10 +8,11 @@ import RestoreSession from "../components/restore_session/container";
 
 import styles from "../styles/blank";
 
-interface IProps { };
-interface IState { };
+interface IProps {
+  navigation: any;
+}
 
-class Loading extends Component<IProps, IState> {
+class Loading extends Component<IProps, any> {
   private static propTypes = {
   };
   constructor() {
@@ -19,10 +20,11 @@ class Loading extends Component<IProps, IState> {
   }
 
   public render() {
+    console.log("Loading Render  called, props is", this.props);
     return (
       <View style={styles.container}>
         <Text style={{ textAlign: "center" }}>Loading</Text>
-        <RestoreSession/>
+        <RestoreSession rootNavigation={this.props.navigation}/>
       </View>
     );
   }

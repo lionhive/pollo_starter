@@ -7,6 +7,7 @@ import styles from "./styles.js";
 
 interface IProps {
   actions: any;
+  navigation: any;
   data: any;
 };
 interface IState { };
@@ -39,17 +40,21 @@ class UserProfile extends Component<IProps, IState> {
         <Text style={{ textAlign: "center" }}>Name: {user.name}</Text>
         <Text style={{ textAlign: "center" }}>Username: {user.username}</Text>
         <Text style={{ textAlign: "center" }}>ID: {user._id}</Text>
-        <Text onPress={() => Actions.login_scene()}>
+        <Text onPress={() => this.props.navigation.navigate("SignInEmail")}>
           Navigate to Home
+        </Text>
+        <Text onPress={() => this.props.navigation.navigate("TabDemo")}>
+          Navigate to Tabs Demo
+        </Text>
+        <Text onPress={() => this.props.navigation.navigate("DrawerDemo")}>
+          Navigate to Drawer Demo
         </Text>
         <Text onPress={() => {
           this.props.actions.signOut()
-            //.then(this.props.data.refetch())
-            .then(Actions.login_scene());
+            .then(this.props.navigation.navigate("SignInEmail"));
         }}>
           Sign Out User
         </Text>
-
       </View>
     );
   }

@@ -6,6 +6,7 @@ import SignInForm from "../sign_in_email/form";
 
 interface IProps extends React.Props<SignInEmail> {
   actions: any;
+  rootNavigation: any;
   signingIn: boolean;
 };
 interface IState {
@@ -23,7 +24,7 @@ class SignInEmail extends Component<IProps, IState> {
     this.props.actions.signInEmail(values)
       .then((result: any) => {
         if (result.token) {
-          Actions.profile_scene();
+          this.props.rootNavigation.navigate("UserProfile");
         } else {
           this.setState({
             errors: [result.message],
